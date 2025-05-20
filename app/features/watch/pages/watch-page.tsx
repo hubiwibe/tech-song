@@ -1,3 +1,5 @@
+import FullPlayer from '~/common/components/full-player';
+
 export default function WatchPage() {
-  return <div>watch</div>;
+  return <FullPlayer />;
 }
