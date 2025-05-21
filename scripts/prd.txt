@@ -1,0 +1,40 @@
+# Product Name
+웹 기반 TTS 듣기 서비스 MVP
+
+## 목표
+- 사용자가 미리 준비된 텍스트 목록을 플레이리스트처럼 재생할 수 있다.
+- 웹 브라우저 내장 TTS로 음성을 재생한다.
+- 일시정지, 재생, 정지, 다음/이전 트랙 기능을 제공한다.
+
+## 주요 기능(Feature List)
+- 텍스트 재생목록 보기
+- TTS 음성 재생 (SpeechSynthesis API)
+- 재생/일시정지/정지 컨트롤
+- 현재 재생중인 트랙 표시
+- 연속재생(자동 다음 트랙 재생)
+
+## 요구사항(Requirements)
+- React(react-router v7 framework mode) 기반 SPA
+- SpeechSynthesis API 사용 (mp3 다운로드는 필요없음)
+- Tesseract.js 등 OCR 기능은 MVP에서는 제외
+- UI/UX는 유튜브 뮤직 플레이어 유사
+
+## 사용자 스토리(User Stories)
+- 사용자는 텍스트 목록을 보고 원하는 항목들을 선택한 다음 재생할 수 있다.
+- 사용자는 재생을 일시정지/정지, 이전/다음 할 수 있다.
+- 사용자는 재생목록을 순서대로 들을 수 있다.
+
+## 디자인/화면 목록(Pages)
+- 홈(재생목록/탐색): `/`
+- 미니 플레이어(재생/일시정지/정지/이전/다음 트랙 정보): 전역 컴포넌트
+- 풀 플레이어(재생/일시정지/정지/이전/다음 트랙 정보, 텍스트 보기 가능): `/watch/:trackId` 에서 표시
+
+## 기술 스택/비고
+- React(react-router v7 framework mode) 기반 SPA
+- Typescript 사용
+- 스타일은 shadcn/ui 사용
+- 상태관리는 zustand 사용
+- API 통신은 fetch 사용
+- 비동기 처리는 tanstack-query 사용
+- 라우팅은 react-router v7 사용
+- TTS는 SpeechSynthesis API 사용
