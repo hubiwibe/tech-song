@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import type { Track } from '~/common/types/track';
 
 export default function useSpeechSynthesisPlayer({
@@ -9,6 +9,17 @@ export default function useSpeechSynthesisPlayer({
   currentTrack: Track | null;
 }) {
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      window.speechSynthesis.cancel();
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   const play = () => {
     if (!window.speechSynthesis) {
@@ -23,7 +34,7 @@ export default function useSpeechSynthesisPlayer({
     //   return;
     // }
 
-    const utterance = new SpeechSynthesisUtterance(currentTrack?.content || '');
+    const utterance = new SpeechSynthesisUtterance(`${currentTrack?.title}\n${currentTrack?.content}` || '');
     utterance.lang = 'ko-KR';
     utterance.onstart = () => setIsPlaying(true);
     utterance.onend = () => setIsPlaying(false);
