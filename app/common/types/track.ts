@@ -2,7 +2,7 @@ export interface Track {
   id: number;
   categoryId?: number | null;
   title: string;
-  content?: string | null;
+  content: string;
   audioUrl?: string | null;
   createdAt: string;
   updatedAt: string;
