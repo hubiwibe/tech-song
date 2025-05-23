@@ -1,17 +1,15 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
 import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from '~/common/components/ui/drawer';
+import { usePlayerStore } from '~/common/store/player-store';
 
 export default function FullPlayer() {
-  const navigate = useNavigate();
-  const [open, setOpen] = useState(true);
+  const { isFullPlayerOpen, currentTrack } = usePlayerStore();
 
   return (
-    <Drawer open={open} onOpenChange={setOpen} onClose={() => setTimeout(() => navigate(-1), 100)}>
-      <DrawerContent className="mx-auto h-screen max-w-xl">
+    <Drawer open={isFullPlayerOpen}>
+      <DrawerContent className="mx-auto h-full max-w-xl">
         <DrawerHeader>
-          <DrawerTitle>track name</DrawerTitle>
-          <DrawerDescription>track description</DrawerDescription>
+          <DrawerTitle>{currentTrack?.title}</DrawerTitle>
+          <DrawerDescription className="whitespace-pre-wrap">{currentTrack?.content}</DrawerDescription>
         </DrawerHeader>
       </DrawerContent>
     </Drawer>
