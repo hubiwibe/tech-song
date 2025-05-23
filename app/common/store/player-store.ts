@@ -37,12 +37,14 @@ interface PlayerState {
   isPlaying: boolean;
   playbackPosition: number;
   playlist: Track[];
+  isFullPlayerOpen: boolean;
   setCurrentTrack: (track: Track) => void;
   setIsPlaying: (playing: boolean) => void;
   setPlaybackPosition: (pos: number) => void;
   setPlaylist: (playlist: Track[]) => void;
   playNext: () => void;
   playPrev: () => void;
+  setIsFullPlayerOpen: (isOpen: boolean) => void;
 }
 
 export const usePlayerStore = create<PlayerState>((set, get) => ({
@@ -50,6 +52,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   isPlaying: false,
   playbackPosition: 0,
   playlist: mockTracks,
+  isFullPlayerOpen: false,
   setCurrentTrack: track => set({ currentTrack: track }),
   setIsPlaying: playing => set({ isPlaying: playing }),
   setPlaybackPosition: pos => set({ playbackPosition: pos }),
@@ -67,5 +70,8 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     const currentIdx = playlist.findIndex(t => t.id === currentTrack.id);
     const prevTrack = currentIdx > 0 ? playlist[currentIdx - 1] : playlist[playlist.length - 1];
     set({ currentTrack: prevTrack, isPlaying: !!prevTrack });
+  },
+  setIsFullPlayerOpen: (isOpen: boolean) => {
+    set({ isFullPlayerOpen: isOpen });
   },
 }));
