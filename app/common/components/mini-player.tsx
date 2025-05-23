@@ -80,21 +80,21 @@ export default function MiniPlayer() {
             onClick={handleStepBack}
             aria-label="이전 트랙"
           >
-            <StepBack size={24} />
+            <StepBack size={24} fill="currentColor" />
           </button>
           <button
             className="p-2 rounded-full hover:bg-gray-100 transition cursor-pointer"
             onClick={handleTogglePlay}
             aria-label={isPlaying ? '일시정지' : '재생'}
           >
-            {isPlaying ? <Pause size={28} /> : <Play size={28} />}
+            {isPlaying ? <Pause size={28} fill="currentColor" /> : <Play size={28} fill="currentColor" />}
           </button>
           <button
             className="p-2 rounded-full hover:bg-gray-100 transition cursor-pointer"
             onClick={handleStepForward}
             aria-label="다음 트랙"
           >
-            <StepForward size={24} />
+            <StepForward size={24} fill="currentColor" />
           </button>
         </section>
         <div
