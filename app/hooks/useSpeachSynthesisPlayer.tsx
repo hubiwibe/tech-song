@@ -3,9 +3,11 @@ import type { Track } from '~/common/types/track';
 
 export default function useSpeechSynthesisPlayer({
   setIsPlaying,
+  setIsPaused,
   currentTrack,
 }: {
   setIsPlaying: (v: boolean) => void;
+  setIsPaused: (v: boolean) => void;
   currentTrack: Track | null;
 }) {
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
@@ -13,6 +15,7 @@ export default function useSpeechSynthesisPlayer({
   useEffect(() => {
     const handleBeforeUnload = () => {
       window.speechSynthesis.cancel();
+      utteranceRef.current = null;
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
 
@@ -27,14 +30,15 @@ export default function useSpeechSynthesisPlayer({
       return;
     }
 
-    if (utteranceRef.current) {
-      resume();
-      return;
+    if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
+      window.speechSynthesis.cancel();
     }
 
     const utterance = new SpeechSynthesisUtterance(`${currentTrack?.title}\n${currentTrack?.content}` || '');
     utterance.lang = 'ko-KR';
-    utterance.onstart = () => setIsPlaying(true);
+    utterance.onstart = () => {
+      setIsPlaying(true);
+    };
     utterance.onend = () => {
       setIsPlaying(false);
       utteranceRef.current = null;
@@ -44,37 +48,26 @@ export default function useSpeechSynthesisPlayer({
       utteranceRef.current = null;
     };
 
-    if (utteranceRef.current) {
-      window.speechSynthesis.cancel();
-    }
-
     utteranceRef.current = utterance;
     window.speechSynthesis.speak(utterance);
   };
 
   const pause = () => {
-    if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
-      window.speechSynthesis.pause();
-      setIsPlaying(false);
-    } else if (window.speechSynthesis.paused) {
-      window.speechSynthesis.cancel();
-      setIsPlaying(false);
-    }
+    setIsPaused(true);
+    setIsPlaying(false);
+    window.speechSynthesis.pause();
   };
 
   const resume = () => {
-    if (window.speechSynthesis.paused) {
-      window.speechSynthesis.resume();
-      setIsPlaying(true);
-    }
+    setIsPlaying(true);
+    setIsPaused(false);
+    window.speechSynthesis.resume();
   };
 
   const stop = () => {
-    if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
-      window.speechSynthesis.cancel();
-      utteranceRef.current = null;
-    }
     setIsPlaying(false);
+    window.speechSynthesis.cancel();
+    utteranceRef.current = null;
   };
 
   return { play, pause, resume, stop };

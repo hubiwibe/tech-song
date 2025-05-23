@@ -35,11 +35,13 @@ const mockTracks: Track[] = [
 interface PlayerState {
   currentTrack: Track | null;
   isPlaying: boolean;
+  isPaused: boolean;
   playbackPosition: number;
   playlist: Track[];
   isFullPlayerOpen: boolean;
   setCurrentTrack: (track: Track) => void;
   setIsPlaying: (playing: boolean) => void;
+  setIsPaused: (paused: boolean) => void;
   setPlaybackPosition: (pos: number) => void;
   setPlaylist: (playlist: Track[]) => void;
   playNext: () => void;
@@ -50,11 +52,13 @@ interface PlayerState {
 export const usePlayerStore = create<PlayerState>((set, get) => ({
   currentTrack: mockTracks[0],
   isPlaying: false,
+  isPaused: false,
   playbackPosition: 0,
   playlist: mockTracks,
   isFullPlayerOpen: false,
   setCurrentTrack: track => set({ currentTrack: track }),
   setIsPlaying: playing => set({ isPlaying: playing }),
+  setIsPaused: paused => set({ isPaused: paused }),
   setPlaybackPosition: pos => set({ playbackPosition: pos }),
   setPlaylist: playlist => set({ playlist }),
   playNext: () => {

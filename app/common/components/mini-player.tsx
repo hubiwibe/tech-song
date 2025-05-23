@@ -7,9 +7,18 @@ import useSpeechSynthesisPlayer from '~/hooks/useSpeachSynthesisPlayer';
 
 export default function MiniPlayer() {
   const navigate = useNavigate();
-  const { isPlaying, setIsPlaying, playNext, playPrev, currentTrack, isFullPlayerOpen, setIsFullPlayerOpen } =
-    usePlayerStore();
-  const { play, pause, stop } = useSpeechSynthesisPlayer({ setIsPlaying, currentTrack });
+  const {
+    isPlaying,
+    setIsPlaying,
+    isPaused,
+    setIsPaused,
+    playNext,
+    playPrev,
+    currentTrack,
+    isFullPlayerOpen,
+    setIsFullPlayerOpen,
+  } = usePlayerStore();
+  const { play, pause, resume, stop } = useSpeechSynthesisPlayer({ setIsPlaying, setIsPaused, currentTrack });
 
   useEffect(() => {
     if (currentTrack?.id) {
@@ -19,6 +28,11 @@ export default function MiniPlayer() {
   }, [currentTrack?.id]);
 
   const handleTogglePlay = () => {
+    if (isPaused) {
+      resume();
+      return;
+    }
+
     if (isPlaying) {
       pause();
     } else {
