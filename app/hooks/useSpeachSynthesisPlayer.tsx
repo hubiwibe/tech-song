@@ -27,18 +27,22 @@ export default function useSpeechSynthesisPlayer({
       return;
     }
 
-    // FIXME: 음성 재생 중 일시정지 버튼 누른 다음 이전 또는 다음 누를 시 음성 재생이 중단되는 버그 해결 필요
-    // if (window.speechSynthesis.paused) {
-    //   window.speechSynthesis.resume();
-    //   setIsPlaying(true);
-    //   return;
-    // }
+    if (utteranceRef.current) {
+      resume();
+      return;
+    }
 
     const utterance = new SpeechSynthesisUtterance(`${currentTrack?.title}\n${currentTrack?.content}` || '');
     utterance.lang = 'ko-KR';
     utterance.onstart = () => setIsPlaying(true);
-    utterance.onend = () => setIsPlaying(false);
-    utterance.onerror = () => setIsPlaying(false);
+    utterance.onend = () => {
+      setIsPlaying(false);
+      utteranceRef.current = null;
+    };
+    utterance.onerror = () => {
+      setIsPlaying(false);
+      utteranceRef.current = null;
+    };
 
     if (utteranceRef.current) {
       window.speechSynthesis.cancel();
@@ -58,16 +62,20 @@ export default function useSpeechSynthesisPlayer({
     }
   };
 
+  const resume = () => {
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+      setIsPlaying(true);
+    }
+  };
+
   const stop = () => {
-    try {
-      if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
-        window.speechSynthesis.cancel();
-      }
-    } catch (e) {
-      console.error('SpeechSynthesis cancel error:', e);
+    if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
+      window.speechSynthesis.cancel();
+      utteranceRef.current = null;
     }
     setIsPlaying(false);
   };
 
-  return { play, pause, stop };
+  return { play, pause, resume, stop };
 }
