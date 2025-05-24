@@ -1,10 +1,9 @@
-import Playlist from '~/features/playlist/components/playlist';
 import type { Route } from './+types/home';
-import { usePlayerStore } from '~/common/store/player-store';
 import { BookHeadphones } from 'lucide-react';
 import { Card, CardContent } from '~/common/components/ui/card';
-import { FaChrome, FaReact, FaSafari, FaJs } from 'react-icons/fa';
-import { BiLogoTypescript } from 'react-icons/bi';
+import { FaChrome, FaReact, FaSafari } from 'react-icons/fa';
+import { SiJavascript, SiTypescript } from 'react-icons/si';
+import { useNavigate } from 'react-router';
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: 'Tech song' }, { name: 'description', content: 'Tech song' }];
@@ -40,12 +39,12 @@ const cardList = [
   },
   {
     key: 'js',
-    icon: <FaJs size={24} />,
+    icon: <SiJavascript size={24} />,
     label: 'JavaScript',
   },
   {
     key: 'ts',
-    icon: <BiLogoTypescript size={24} />,
+    icon: <SiTypescript size={24} />,
     label: 'TypeScript',
   },
   {
@@ -56,6 +55,12 @@ const cardList = [
 ];
 
 export default function HomePage() {
+  const navigate = useNavigate();
+
+  const handleClick = (key: string) => {
+    navigate(`/playlist/${key}`);
+  };
+
   return (
     <section className="flex flex-col gap-4 px-4">
       <div className="bg-white py-3 px-4 flex justify-center items-center gap-2">
@@ -71,7 +76,7 @@ export default function HomePage() {
             if (card.dynamic) {
               const platform = getPlatformInfo();
               return (
-                <Card key={card.key} className="cursor-pointer hover:bg-gray-50">
+                <Card key={card.key} className="cursor-pointer hover:bg-gray-50" onClick={() => handleClick(card.key)}>
                   <CardContent className="flex items-center gap-2 text-lg font-semibold text-gray-500">
                     <div className="flex items-center justify-center">{platform.icon}</div>
                     <span>{platform.label}</span>
@@ -80,7 +85,7 @@ export default function HomePage() {
               );
             }
             return (
-              <Card key={card.key} className="cursor-pointer hover:bg-gray-50">
+              <Card key={card.key} className="cursor-pointer hover:bg-gray-50" onClick={() => handleClick(card.key)}>
                 <CardContent className="flex items-center gap-2 text-lg font-semibold text-gray-500">
                   <div className="flex items-center justify-center">{card.icon}</div>
                   <span>{card.label}</span>
