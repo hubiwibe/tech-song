@@ -1,23 +1,13 @@
-import { Pause, Play, StepBack, StepForward } from 'lucide-react';
+import { Pause, Play } from 'lucide-react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { Button } from '~/common/components/ui/button';
 import { usePlayerStore } from '~/common/store/player-store';
-import type { Track } from '~/common/types/track';
 import useSpeechSynthesisPlayer from '~/hooks/useSpeachSynthesisPlayer';
 
 export default function MiniPlayer() {
   const navigate = useNavigate();
-  const {
-    isPlaying,
-    setIsPlaying,
-    isPaused,
-    setIsPaused,
-    playNext,
-    playPrev,
-    currentTrack,
-    isFullPlayerOpen,
-    setIsFullPlayerOpen,
-  } = usePlayerStore();
+  const { isPlaying, setIsPlaying, isPaused, setIsPaused, currentTrack, isFullPlayerOpen } = usePlayerStore();
   const { play, pause, resume, stop } = useSpeechSynthesisPlayer({ setIsPlaying, setIsPaused, currentTrack });
 
   useEffect(() => {
@@ -40,30 +30,17 @@ export default function MiniPlayer() {
     }
   };
 
-  const handleStepBack = () => {
-    stop();
-    playPrev();
-  };
-
-  const handleStepForward = () => {
-    stop();
-    playNext();
-  };
-
   const handleOpenFullPlayer = () => {
     if (currentTrack?.id) {
-      setIsFullPlayerOpen(true);
       navigate(`/watch/${currentTrack.id}`);
     }
   };
 
   const handleCloseFullPlayer = () => {
-    setIsFullPlayerOpen(false);
     setTimeout(() => navigate(-1), 150);
   };
 
   const handleToggleFullPlayer = () => {
-    console.debug('@@ handleToggleFullPlayer', isFullPlayerOpen);
     if (isFullPlayerOpen) {
       handleCloseFullPlayer();
     } else {
@@ -72,37 +49,23 @@ export default function MiniPlayer() {
   };
 
   return (
-    <section className="fixed bottom-0 w-full z-99999 bg-white dark:bg-gray-950 max-w-xl pointer-events-auto">
-      <div className="flex items-center justify-between p-2 gap-1">
-        <section className="flex items-center">
-          <button
-            className="p-2 rounded-full hover:bg-gray-100 transition cursor-pointer"
-            onClick={handleStepBack}
-            aria-label="이전 트랙"
-          >
-            <StepBack size={24} fill="currentColor" />
-          </button>
-          <button
-            className="p-2 rounded-full hover:bg-gray-100 transition cursor-pointer"
-            onClick={handleTogglePlay}
-            aria-label={isPlaying ? '일시정지' : '재생'}
-          >
-            {isPlaying ? <Pause size={28} fill="currentColor" /> : <Play size={28} fill="currentColor" />}
-          </button>
-          <button
-            className="p-2 rounded-full hover:bg-gray-100 transition cursor-pointer"
-            onClick={handleStepForward}
-            aria-label="다음 트랙"
-          >
-            <StepForward size={24} fill="currentColor" />
-          </button>
-        </section>
+    <section className="fixed bottom-0 w-full z-50 bg-white dark:bg-gray-950 max-w-xl pointer-events-auto">
+      <div className="flex items-center justify-between py-2 px-3 gap-3 bg-gray-100 dark:bg-gray-900">
         <div
           className="flex-1 min-w-0 cursor-pointer text-sm font-semibold whitespace-nowrap overflow-hidden text-ellipsis"
           onClick={handleToggleFullPlayer}
         >
           {currentTrack?.title || 'No Track'}
         </div>
+        <section className="flex items-center gap-2">
+          <Button
+            className="p-2 cursor-pointer"
+            onClick={handleTogglePlay}
+            aria-label={isPlaying ? '일시정지' : '재생'}
+          >
+            {isPlaying ? <Pause className="size-6" /> : <Play className="size-6" />}
+          </Button>
+        </section>
       </div>
     </section>
   );
