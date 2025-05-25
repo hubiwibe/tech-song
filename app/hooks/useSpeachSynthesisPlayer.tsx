@@ -5,10 +5,12 @@ export default function useSpeechSynthesisPlayer({
   setIsPlaying,
   setIsPaused,
   currentTrack,
+  playNext,
 }: {
   setIsPlaying: (v: boolean) => void;
   setIsPaused: (v: boolean) => void;
   currentTrack: Track | null;
+  playNext: () => void;
 }) {
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
@@ -32,6 +34,7 @@ export default function useSpeechSynthesisPlayer({
 
     if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
       window.speechSynthesis.cancel();
+      utteranceRef.current = null;
     }
 
     const utterance = new SpeechSynthesisUtterance(`${currentTrack?.title}\n${currentTrack?.content}` || '');
@@ -40,12 +43,11 @@ export default function useSpeechSynthesisPlayer({
       setIsPlaying(true);
     };
     utterance.onend = () => {
-      setIsPlaying(false);
-      utteranceRef.current = null;
+      stop();
+      playNext();
     };
     utterance.onerror = () => {
-      setIsPlaying(false);
-      utteranceRef.current = null;
+      stop();
     };
 
     utteranceRef.current = utterance;
