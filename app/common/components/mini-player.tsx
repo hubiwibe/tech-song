@@ -3,12 +3,10 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { Button } from '~/common/components/ui/button';
 import { usePlayerStore } from '~/common/store/player-store';
-import useSpeechSynthesisPlayer from '~/hooks/useSpeachSynthesisPlayer';
 
 export default function MiniPlayer() {
   const navigate = useNavigate();
-  const { isPlaying, setIsPlaying, isPaused, setIsPaused, currentTrack, isFullPlayerOpen, playNext } = usePlayerStore();
-  const { play, pause, resume, stop } = useSpeechSynthesisPlayer({ setIsPlaying, setIsPaused, currentTrack, playNext });
+  const { isPlaying, isPaused, currentTrack, isFullPlayerOpen, play, pause, resume, stop } = usePlayerStore();
 
   useEffect(() => {
     if (currentTrack?.id) {

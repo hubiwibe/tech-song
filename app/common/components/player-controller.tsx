@@ -1,16 +1,9 @@
 import { Pause, Play, Repeat, Shuffle, StepBack, StepForward } from 'lucide-react';
 import { Button } from '~/common/components/ui/button';
 import { usePlayerStore } from '~/common/store/player-store';
-import useSpeechSynthesisPlayer from '~/hooks/useSpeachSynthesisPlayer';
 
 export default function PlayerController() {
-  const { currentTrack, isPlaying, isPaused, setIsPlaying, setIsPaused, playPrev, playNext } = usePlayerStore();
-  const { play, pause, resume, stop } = useSpeechSynthesisPlayer({
-    setIsPlaying,
-    setIsPaused,
-    currentTrack,
-    playNext,
-  });
+  const { isPlaying, isPaused, playPrev, playNext, play, pause, resume, stop } = usePlayerStore();
 
   const handleTogglePlay = () => {
     if (isPaused) {
