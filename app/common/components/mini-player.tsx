@@ -7,8 +7,8 @@ import useSpeechSynthesisPlayer from '~/hooks/useSpeachSynthesisPlayer';
 
 export default function MiniPlayer() {
   const navigate = useNavigate();
-  const { isPlaying, setIsPlaying, isPaused, setIsPaused, currentTrack, isFullPlayerOpen } = usePlayerStore();
-  const { play, pause, resume, stop } = useSpeechSynthesisPlayer({ setIsPlaying, setIsPaused, currentTrack });
+  const { isPlaying, setIsPlaying, isPaused, setIsPaused, currentTrack, isFullPlayerOpen, playNext } = usePlayerStore();
+  const { play, pause, resume, stop } = useSpeechSynthesisPlayer({ setIsPlaying, setIsPaused, currentTrack, playNext });
 
   useEffect(() => {
     if (currentTrack?.id) {

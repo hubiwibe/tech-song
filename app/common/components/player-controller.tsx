@@ -5,8 +5,12 @@ import useSpeechSynthesisPlayer from '~/hooks/useSpeachSynthesisPlayer';
 
 export default function PlayerController() {
   const { currentTrack, isPlaying, isPaused, setIsPlaying, setIsPaused, playPrev, playNext } = usePlayerStore();
-
-  const { play, pause, resume, stop } = useSpeechSynthesisPlayer({ setIsPlaying, setIsPaused, currentTrack });
+  const { play, pause, resume, stop } = useSpeechSynthesisPlayer({
+    setIsPlaying,
+    setIsPaused,
+    currentTrack,
+    playNext,
+  });
 
   const handleTogglePlay = () => {
     if (isPaused) {
