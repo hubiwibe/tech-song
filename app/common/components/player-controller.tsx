@@ -39,9 +39,9 @@ export default function PlayerController() {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center justify-center gap-3 w-full">
-        <Button className="cursor-pointer" variant="ghost" size="lg" onClick={handleShuffle}>
+        {/* <Button className="cursor-pointer" variant="ghost" size="lg" onClick={handleShuffle}>
           <Shuffle className="size-5" />
-        </Button>
+        </Button> */}
         <Button className="cursor-pointer" variant="ghost" size="lg" onClick={handleStepBack}>
           <StepBack className="size-5" />
         </Button>
@@ -51,9 +51,9 @@ export default function PlayerController() {
         <Button className="cursor-pointer" variant="ghost" size="lg" onClick={handleStepForward}>
           <StepForward className="size-5" />
         </Button>
-        <Button className="cursor-pointer" variant="ghost" size="lg" onClick={handleRepeat}>
+        {/* <Button className="cursor-pointer" variant="ghost" size="lg" onClick={handleRepeat}>
           <Repeat className="size-5" />
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
