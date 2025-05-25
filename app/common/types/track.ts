@@ -1,5 +1,5 @@
 export interface Track {
-  id: number;
+  id: string;
   categoryId?: number | null;
   title: string;
   content: string;
