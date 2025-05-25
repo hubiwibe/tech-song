@@ -1,9 +1,10 @@
-import type { Route } from './+types/home';
+import type { Route } from './+types/home-page';
 import { BookHeadphones } from 'lucide-react';
 import { Card, CardContent } from '~/common/components/ui/card';
 import { FaChrome, FaReact, FaSafari } from 'react-icons/fa';
 import { SiJavascript, SiTypescript } from 'react-icons/si';
 import { useNavigate } from 'react-router';
+import { mockPlaylists } from '~/mocks/data';
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: 'Tech song' }, { name: 'description', content: 'Tech song' }];
@@ -38,12 +39,12 @@ const cardList = [
     dynamic: true, // 플랫폼 감지 필요
   },
   {
-    key: 'js',
+    key: 'javascript',
     icon: <SiJavascript size={24} />,
     label: 'JavaScript',
   },
   {
-    key: 'ts',
+    key: 'typescript',
     icon: <SiTypescript size={24} />,
     label: 'TypeScript',
   },
@@ -72,27 +73,17 @@ export default function HomePage() {
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          {cardList.map(card => {
-            if (card.dynamic) {
-              const platform = getPlatformInfo();
-              return (
-                <Card key={card.key} className="cursor-pointer hover:bg-gray-50" onClick={() => handleClick(card.key)}>
-                  <CardContent className="flex items-center gap-2 text-lg font-semibold text-gray-500">
-                    <div className="flex items-center justify-center">{platform.icon}</div>
-                    <span>{platform.label}</span>
-                  </CardContent>
-                </Card>
-              );
-            }
-            return (
-              <Card key={card.key} className="cursor-pointer hover:bg-gray-50" onClick={() => handleClick(card.key)}>
-                <CardContent className="flex items-center gap-2 text-lg font-semibold text-gray-500">
-                  <div className="flex items-center justify-center">{card.icon}</div>
-                  <span>{card.label}</span>
-                </CardContent>
-              </Card>
-            );
-          })}
+          {mockPlaylists.map(playlist => (
+            <Card
+              key={playlist.id}
+              className="cursor-pointer hover:bg-gray-50"
+              onClick={() => handleClick(playlist.id)}
+            >
+              <CardContent className="flex items-center gap-2 text-lg font-semibold text-gray-500">
+                <span>{playlist.title}</span>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>
