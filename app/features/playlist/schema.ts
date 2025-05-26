@@ -25,14 +25,14 @@ export const playlist_tracks = pgTable('playlist_tracks', {
 
 export const playlist_views = pgTable('playlist_views', {
   playlist_id: uuid().references(() => playlists.playlist_id),
-  user_id: uuid().references(() => users.id),
+  profile_id: uuid().references(() => profiles.profile_id),
   created_at: timestamp().notNull().defaultNow(),
   updated_at: timestamp().notNull().defaultNow(),
 });
 
 export const playback_histories = pgTable('playback_histories', {
   playlist_id: uuid().references(() => playlists.playlist_id),
-  user_id: uuid().references(() => users.id),
+  profile_id: uuid().references(() => profiles.profile_id),
   track_id: uuid().references(() => tracks.track_id),
   position: integer().notNull().default(0),
   created_at: timestamp().notNull().defaultNow(),
