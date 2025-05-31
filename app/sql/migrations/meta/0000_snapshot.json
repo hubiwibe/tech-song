@@ -1,5 +1,5 @@
 {
-  "id": "742319b7-c11b-43b4-8057-ab248d8cb3b7",
+  "id": "e10a3ef9-b707-4625-8662-62cd244f4a8b",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -10,19 +10,19 @@
       "columns": {
         "playlist_id": {
           "name": "playlist_id",
-          "type": "uuid",
+          "type": "bigint",
           "primaryKey": false,
           "notNull": false
         },
-        "user_id": {
-          "name": "user_id",
+        "profile_id": {
+          "name": "profile_id",
           "type": "uuid",
           "primaryKey": false,
           "notNull": false
         },
         "track_id": {
           "name": "track_id",
-          "type": "uuid",
+          "type": "bigint",
           "primaryKey": false,
           "notNull": false
         },
@@ -46,12 +46,6 @@
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
-        },
-        "deleted_at": {
-          "name": "deleted_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false
         }
       },
       "indexes": {},
@@ -69,16 +63,15 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "playback_histories_user_id_users_id_fk": {
-          "name": "playback_histories_user_id_users_id_fk",
+        "playback_histories_profile_id_profiles_profile_id_fk": {
+          "name": "playback_histories_profile_id_profiles_profile_id_fk",
           "tableFrom": "playback_histories",
-          "tableTo": "users",
-          "schemaTo": "auth",
+          "tableTo": "profiles",
           "columnsFrom": [
-            "user_id"
+            "profile_id"
           ],
           "columnsTo": [
-            "id"
+            "profile_id"
           ],
           "onDelete": "no action",
           "onUpdate": "no action"
@@ -109,13 +102,13 @@
       "columns": {
         "playlist_id": {
           "name": "playlist_id",
-          "type": "uuid",
+          "type": "bigint",
           "primaryKey": false,
           "notNull": false
         },
         "track_id": {
           "name": "track_id",
-          "type": "uuid",
+          "type": "bigint",
           "primaryKey": false,
           "notNull": false
         },
@@ -138,12 +131,6 @@
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
-        },
-        "deleted_at": {
-          "name": "deleted_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false
         }
       },
       "indexes": {},
@@ -187,12 +174,12 @@
       "columns": {
         "playlist_id": {
           "name": "playlist_id",
-          "type": "uuid",
+          "type": "bigint",
           "primaryKey": false,
           "notNull": false
         },
-        "user_id": {
-          "name": "user_id",
+        "profile_id": {
+          "name": "profile_id",
           "type": "uuid",
           "primaryKey": false,
           "notNull": false
@@ -210,12 +197,6 @@
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
-        },
-        "deleted_at": {
-          "name": "deleted_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false
         }
       },
       "indexes": {},
@@ -233,16 +214,15 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "playlist_views_user_id_users_id_fk": {
-          "name": "playlist_views_user_id_users_id_fk",
+        "playlist_views_profile_id_profiles_profile_id_fk": {
+          "name": "playlist_views_profile_id_profiles_profile_id_fk",
           "tableFrom": "playlist_views",
-          "tableTo": "users",
-          "schemaTo": "auth",
+          "tableTo": "profiles",
           "columnsFrom": [
-            "user_id"
+            "profile_id"
           ],
           "columnsTo": [
-            "id"
+            "profile_id"
           ],
           "onDelete": "no action",
           "onUpdate": "no action"
@@ -260,9 +240,20 @@
       "columns": {
         "playlist_id": {
           "name": "playlist_id",
-          "type": "uuid",
+          "type": "bigint",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "playlists_playlist_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "cache": "1",
+            "cycle": false
+          }
         },
         "title": {
           "name": "title",
@@ -283,6 +274,19 @@
           "notNull": true,
           "default": false
         },
+        "stats": {
+          "name": "stats",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{\"views\":0,\"likes\":0}'::jsonb"
+        },
+        "profile_id": {
+          "name": "profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
         "created_at": {
           "name": "created_at",
           "type": "timestamp",
@@ -296,16 +300,24 @@
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
-        },
-        "deleted_at": {
-          "name": "deleted_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "playlists_profile_id_profiles_profile_id_fk": {
+          "name": "playlists_profile_id_profiles_profile_id_fk",
+          "tableFrom": "playlists",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "profile_id"
+          ],
+          "columnsTo": [
+            "profile_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},
@@ -318,9 +330,20 @@
       "columns": {
         "category_id": {
           "name": "category_id",
-          "type": "uuid",
+          "type": "bigint",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "categories_category_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "cache": "1",
+            "cycle": false
+          }
         },
         "title": {
           "name": "title",
@@ -347,12 +370,6 @@
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
-        },
-        "deleted_at": {
-          "name": "deleted_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false
         }
       },
       "indexes": {},
@@ -369,9 +386,20 @@
       "columns": {
         "tag_id": {
           "name": "tag_id",
-          "type": "uuid",
+          "type": "bigint",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "tags_tag_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "cache": "1",
+            "cycle": false
+          }
         },
         "name": {
           "name": "name",
@@ -392,12 +420,6 @@
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
-        },
-        "deleted_at": {
-          "name": "deleted_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false
         }
       },
       "indexes": {},
@@ -422,13 +444,13 @@
       "columns": {
         "track_id": {
           "name": "track_id",
-          "type": "uuid",
+          "type": "bigint",
           "primaryKey": false,
           "notNull": false
         },
         "category_id": {
           "name": "category_id",
-          "type": "uuid",
+          "type": "bigint",
           "primaryKey": false,
           "notNull": false
         },
@@ -445,12 +467,6 @@
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
-        },
-        "deleted_at": {
-          "name": "deleted_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false
         }
       },
       "indexes": {},
@@ -465,7 +481,7 @@
           "columnsTo": [
             "track_id"
           ],
-          "onDelete": "no action",
+          "onDelete": "cascade",
           "onUpdate": "no action"
         },
         "track_categories_category_id_categories_category_id_fk": {
@@ -478,11 +494,19 @@
           "columnsTo": [
             "category_id"
           ],
-          "onDelete": "no action",
+          "onDelete": "cascade",
           "onUpdate": "no action"
         }
       },
-      "compositePrimaryKeys": {},
+      "compositePrimaryKeys": {
+        "track_categories_track_id_category_id_pk": {
+          "name": "track_categories_track_id_category_id_pk",
+          "columns": [
+            "track_id",
+            "category_id"
+          ]
+        }
+      },
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
@@ -494,13 +518,13 @@
       "columns": {
         "track_id": {
           "name": "track_id",
-          "type": "uuid",
+          "type": "bigint",
           "primaryKey": false,
           "notNull": false
         },
         "tag_id": {
           "name": "tag_id",
-          "type": "uuid",
+          "type": "bigint",
           "primaryKey": false,
           "notNull": false
         },
@@ -517,12 +541,6 @@
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
-        },
-        "deleted_at": {
-          "name": "deleted_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false
         }
       },
       "indexes": {},
@@ -537,7 +555,7 @@
           "columnsTo": [
             "track_id"
           ],
-          "onDelete": "no action",
+          "onDelete": "cascade",
           "onUpdate": "no action"
         },
         "track_tags_tag_id_tags_tag_id_fk": {
@@ -550,11 +568,19 @@
           "columnsTo": [
             "tag_id"
           ],
-          "onDelete": "no action",
+          "onDelete": "cascade",
           "onUpdate": "no action"
         }
       },
-      "compositePrimaryKeys": {},
+      "compositePrimaryKeys": {
+        "track_tags_track_id_tag_id_pk": {
+          "name": "track_tags_track_id_tag_id_pk",
+          "columns": [
+            "track_id",
+            "tag_id"
+          ]
+        }
+      },
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
@@ -566,15 +592,20 @@
       "columns": {
         "track_id": {
           "name": "track_id",
-          "type": "uuid",
+          "type": "bigint",
           "primaryKey": true,
-          "notNull": true
-        },
-        "category_id": {
-          "name": "category_id",
-          "type": "uuid",
-          "primaryKey": false,
-          "notNull": false
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "tracks_track_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "cache": "1",
+            "cycle": false
+          }
         },
         "title": {
           "name": "title",
@@ -584,6 +615,72 @@
         },
         "content": {
           "name": "content",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "stats": {
+          "name": "stats",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{\"views\":0,\"likes\":0}'::jsonb"
+        },
+        "profile_id": {
+          "name": "profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "tracks_profile_id_profiles_profile_id_fk": {
+          "name": "tracks_profile_id_profiles_profile_id_fk",
+          "tableFrom": "tracks",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "profile_id"
+          ],
+          "columnsTo": [
+            "profile_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.profiles": {
+      "name": "profiles",
+      "schema": "",
+      "columns": {
+        "profile_id": {
+          "name": "profile_id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -601,27 +698,22 @@
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
-        },
-        "deleted_at": {
-          "name": "deleted_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "tracks_category_id_categories_category_id_fk": {
-          "name": "tracks_category_id_categories_category_id_fk",
-          "tableFrom": "tracks",
-          "tableTo": "categories",
+        "profiles_profile_id_users_id_fk": {
+          "name": "profiles_profile_id_users_id_fk",
+          "tableFrom": "profiles",
+          "tableTo": "users",
+          "schemaTo": "auth",
           "columnsFrom": [
-            "category_id"
+            "profile_id"
           ],
           "columnsTo": [
-            "category_id"
+            "id"
           ],
-          "onDelete": "no action",
+          "onDelete": "cascade",
           "onUpdate": "no action"
         }
       },

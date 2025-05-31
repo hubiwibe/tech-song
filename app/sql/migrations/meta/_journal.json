@@ -5,36 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1748229520806,
-      "tag": "0000_careless_luckman",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1748235607653,
-      "tag": "0001_exotic_skreet",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1748235674718,
-      "tag": "0002_ambitious_puff_adder",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1748246190011,
-      "tag": "0003_vengeful_sunfire",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1748686686488,
-      "tag": "0004_gigantic_quentin_quire",
+      "when": 1748698021692,
+      "tag": "0000_workable_vanisher",
       "breakpoints": true
     }
   ]
