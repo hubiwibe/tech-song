@@ -1,7 +1,7 @@
 import type { Track } from '~/common/types/track';
 
 export interface Playlist {
-  id: string;
+  id: number;
   title: string;
   description?: string | null;
   playlistTracks: PlaylistTrack[];
