@@ -1,64 +1,23 @@
 import type { Route } from './+types/home-page';
 import { BookHeadphones } from 'lucide-react';
 import { Card, CardContent } from '~/common/components/ui/card';
-import { FaChrome, FaReact, FaSafari } from 'react-icons/fa';
-import { SiJavascript, SiTypescript } from 'react-icons/si';
 import { useNavigate } from 'react-router';
-import { mockPlaylists } from '~/mocks/data';
+import { getPlaylists } from '~/features/playlist/queries';
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: 'Tech song' }, { name: 'description', content: 'Tech song' }];
 }
 
-function getPlatformInfo() {
-  if (typeof navigator !== 'undefined') {
-    const ua = navigator.userAgent;
-    if (/android/i.test(ua)) {
-      return {
-        icon: <FaChrome size={24} />,
-        label: 'Browser',
-      };
-    }
-    if (/iPad|iPhone|iPod/.test(ua)) {
-      return {
-        icon: <FaSafari size={24} />,
-        label: 'Browser',
-      };
-    }
-  }
-  return {
-    icon: <FaChrome size={24} />,
-    label: 'Browser',
-  };
-}
+export const loader = async () => {
+  const playlists = await getPlaylists();
+  return { playlists };
+};
 
-// 카드 정보 배열
-const cardList = [
-  {
-    key: 'browser',
-    dynamic: true, // 플랫폼 감지 필요
-  },
-  {
-    key: 'javascript',
-    icon: <SiJavascript size={24} />,
-    label: 'JavaScript',
-  },
-  {
-    key: 'typescript',
-    icon: <SiTypescript size={24} />,
-    label: 'TypeScript',
-  },
-  {
-    key: 'react',
-    icon: <FaReact size={24} />,
-    label: 'React',
-  },
-];
-
-export default function HomePage() {
+export default function HomePage({ loaderData }: Route.ComponentProps) {
   const navigate = useNavigate();
+  const { playlists } = loaderData;
 
-  const handleClick = (key: string) => {
+  const handleClick = (key: number) => {
     navigate(`/playlist/${key}`);
   };
 
@@ -73,7 +32,7 @@ export default function HomePage() {
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          {mockPlaylists.map(playlist => (
+          {playlists.map(playlist => (
             <Card
               key={playlist.id}
               className="cursor-pointer hover:bg-gray-50"
