@@ -55,7 +55,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   // 플레이어 제어 함수
   play: () => {
     if (!window.speechSynthesis) return;
-    const { currentTrack } = get();
+    const { currentTrack, playNext } = get();
     if (!currentTrack) return;
 
     // 이미 재생 중이거나 일시정지 상태면 취소 후 새로 재생
@@ -66,7 +66,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     const utterance = new SpeechSynthesisUtterance(`${currentTrack.title}\n${currentTrack.content}`);
     utterance.lang = 'ko-KR';
     utterance.onstart = () => set({ isPlaying: true, isPaused: false });
-    utterance.onend = () => set({ isPlaying: false, isPaused: false });
+    utterance.onend = () => playNext();
     utterance.onerror = () => set({ isPlaying: false, isPaused: false });
     window.speechSynthesis.speak(utterance);
   },
@@ -91,7 +91,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   },
 
   playNext: () => {
-    const { playlistTracks, currentTrack } = get();
+    const { playlistTracks, currentTrack, play } = get();
     if (!playlistTracks || !currentTrack) return;
     const tracks = playlistTracks;
     const currentIdx = tracks.findIndex(t => t.trackId === currentTrack.trackId);
@@ -99,10 +99,11 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     const nextIdx = (currentIdx + 1) % tracks.length;
     const nextTrack = tracks[nextIdx];
     set({ currentTrack: nextTrack, isPlaying: true, isPaused: false });
+    play();
   },
 
   playPrev: () => {
-    const { playlistTracks, currentTrack } = get();
+    const { playlistTracks, currentTrack, play } = get();
     if (!playlistTracks || !currentTrack) return;
     const tracks = playlistTracks;
     const currentIdx = tracks.findIndex(t => t.trackId === currentTrack.trackId);
@@ -110,5 +111,6 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     const prevIdx = (currentIdx - 1 + tracks.length) % tracks.length;
     const prevTrack = tracks[prevIdx];
     set({ currentTrack: prevTrack, isPlaying: true, isPaused: false });
+    play();
   },
 }));
