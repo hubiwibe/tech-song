@@ -1,11 +1,9 @@
 export interface Track {
-  id: number;
+  trackId: number;
   categoryId?: number | null;
   title: string;
   content: string;
   audioUrl?: string | null;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface TrackCategory {

@@ -1,12 +1,13 @@
-import type { Track } from '~/common/types/track';
-
 export interface Playlist {
-  id: number;
+  playlistId: number;
   title: string;
   description?: string | null;
-  playlistTracks: PlaylistTrack[];
 }
 
-export interface PlaylistTrack extends Track {
-  position: number;
+export interface PlaylistTrack {
+  trackId: number;
+  playlistId: number;
+  title: string;
+  content: string;
+  audioUrl?: string;
 }

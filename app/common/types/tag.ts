@@ -1,7 +1,5 @@
 export interface Tag {
-  id: number;
+  tagId: number;
   name: string;
   description?: string | null;
-  createdAt: string;
-  updatedAt: string;
 }

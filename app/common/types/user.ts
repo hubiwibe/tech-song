@@ -1,16 +1,12 @@
-export interface User {
-  id: number;
+export interface Profile {
+  profileId: number;
   email: string;
   name?: string | null;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface UserSocialAccount {
-  id: number;
+  profileId: number;
   userId: number;
   provider: string;
   providerUserId: string;
-  createdAt: string;
-  updatedAt: string;
 }

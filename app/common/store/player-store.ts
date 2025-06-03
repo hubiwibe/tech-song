@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { Playlist } from '~/common/types/playlist';
+import type { Playlist, PlaylistTrack } from '~/common/types/playlist';
 import type { Track } from '~/common/types/track';
 
 /**
@@ -9,6 +9,7 @@ interface PlayerState {
   // 상태값
   currentTrack: Track | null;
   playlist: Playlist | null;
+  playlistTracks: PlaylistTrack[];
   playbackPosition: number;
   isPlaying: boolean;
   isPaused: boolean;
@@ -17,6 +18,7 @@ interface PlayerState {
   // Setter 함수
   setCurrentTrack: (track: Track) => void;
   setPlaylist: (playlist: Playlist) => void;
+  setPlaylistTracks: (tracks: PlaylistTrack[]) => void;
   setPlaybackPosition: (pos: number) => void;
   setIsPlaying: (playing: boolean) => void;
   setIsPaused: (paused: boolean) => void;
@@ -35,6 +37,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   // 상태값
   currentTrack: null,
   playlist: null,
+  playlistTracks: [],
   playbackPosition: 0,
   isPlaying: false,
   isPaused: false,
@@ -43,6 +46,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   // Setter 함수
   setCurrentTrack: track => set({ currentTrack: track }),
   setPlaylist: playlist => set({ playlist }),
+  setPlaylistTracks: tracks => set({ playlistTracks: tracks }),
   setPlaybackPosition: pos => set({ playbackPosition: pos }),
   setIsPlaying: playing => set({ isPlaying: playing }),
   setIsPaused: paused => set({ isPaused: paused }),
@@ -87,10 +91,10 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   },
 
   playNext: () => {
-    const { playlist, currentTrack } = get();
-    if (!playlist || !currentTrack) return;
-    const tracks = playlist.playlistTracks;
-    const currentIdx = tracks.findIndex(t => t.id === currentTrack.id);
+    const { playlistTracks, currentTrack } = get();
+    if (!playlistTracks || !currentTrack) return;
+    const tracks = playlistTracks;
+    const currentIdx = tracks.findIndex(t => t.trackId === currentTrack.trackId);
     if (currentIdx === -1) return;
     const nextIdx = (currentIdx + 1) % tracks.length;
     const nextTrack = tracks[nextIdx];
@@ -98,10 +102,10 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   },
 
   playPrev: () => {
-    const { playlist, currentTrack } = get();
-    if (!playlist || !currentTrack) return;
-    const tracks = playlist.playlistTracks;
-    const currentIdx = tracks.findIndex(t => t.id === currentTrack.id);
+    const { playlistTracks, currentTrack } = get();
+    if (!playlistTracks || !currentTrack) return;
+    const tracks = playlistTracks;
+    const currentIdx = tracks.findIndex(t => t.trackId === currentTrack.trackId);
     if (currentIdx === -1) return;
     const prevIdx = (currentIdx - 1 + tracks.length) % tracks.length;
     const prevTrack = tracks[prevIdx];
