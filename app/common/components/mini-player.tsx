@@ -1,5 +1,5 @@
 import { Pause, Play } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
 import { Button } from '~/common/components/ui/button';
 import { usePlayerStore } from '~/common/store/player-store';
@@ -7,13 +7,14 @@ import { usePlayerStore } from '~/common/store/player-store';
 export default function MiniPlayer() {
   const navigate = useNavigate();
   const { isPlaying, isPaused, currentTrack, isFullPlayerOpen, play, pause, resume, stop } = usePlayerStore();
+  const playBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (currentTrack?.id) {
+    if (currentTrack?.trackId) {
       stop();
       play();
     }
-  }, [currentTrack?.id]);
+  }, [currentTrack?.trackId]);
 
   const handleTogglePlay = () => {
     if (isPaused) {
@@ -29,8 +30,8 @@ export default function MiniPlayer() {
   };
 
   const handleOpenFullPlayer = () => {
-    if (currentTrack?.id) {
-      navigate(`/watch/${currentTrack.id}`);
+    if (currentTrack?.trackId) {
+      navigate(`/watch/${currentTrack.trackId}`);
     }
   };
 
@@ -57,6 +58,7 @@ export default function MiniPlayer() {
         </div>
         <section className="flex items-center gap-2">
           <Button
+            ref={playBtnRef}
             className="p-2 cursor-pointer"
             onClick={handleTogglePlay}
             aria-label={isPlaying ? '일시정지' : '재생'}
