@@ -357,3 +357,80 @@ VALUES
     ('javascript', now (), now ()),
     ('typescript', now (), now ()),
     ('react', now (), now ());
+
+-- Browser (playlist_id = 1)
+INSERT INTO
+    playlist_tracks (
+        playlist_id,
+        track_id,
+        "order",
+        created_at,
+        updated_at
+    )
+VALUES
+    (1, 1, 1, now (), now ()),
+    (1, 2, 2, now (), now ()),
+    (1, 3, 3, now (), now ()),
+    (1, 4, 4, now (), now ()),
+    (1, 5, 5, now (), now ());
+
+-- JavaScript (playlist_id = 2)
+INSERT INTO
+    playlist_tracks (
+        playlist_id,
+        track_id,
+        "order",
+        created_at,
+        updated_at
+    )
+VALUES
+    (2, 6, 1, now (), now ()),
+    (2, 7, 2, now (), now ()),
+    (2, 8, 3, now (), now ()),
+    (2, 9, 4, now (), now ()),
+    (2, 10, 5, now (), now ()),
+    (2, 11, 6, now (), now ()),
+    (2, 12, 7, now (), now ()),
+    (2, 13, 8, now (), now ());
+
+-- TypeScript (playlist_id = 3)
+INSERT INTO
+    playlist_tracks (
+        playlist_id,
+        track_id,
+        "order",
+        created_at,
+        updated_at
+    )
+VALUES
+    (3, 14, 1, now (), now ()),
+    (3, 15, 2, now (), now ()),
+    (3, 16, 3, now (), now ()),
+    (3, 17, 4, now (), now ()),
+    (3, 18, 5, now (), now ()),
+    (3, 19, 6, now (), now ()),
+    (3, 20, 7, now (), now ()),
+    (3, 21, 8, now (), now ());
+
+-- React (playlist_id = 4)
+INSERT INTO
+    playlist_tracks (
+        playlist_id,
+        track_id,
+        "order",
+        created_at,
+        updated_at
+    )
+VALUES
+    (4, 22, 1, now (), now ()),
+    (4, 23, 2, now (), now ()),
+    (4, 24, 3, now (), now ()),
+    (4, 25, 4, now (), now ()),
+    (4, 26, 5, now (), now ()),
+    (4, 27, 6, now (), now ()),
+    (4, 28, 7, now (), now ()),
+    (4, 29, 8, now (), now ()),
+    (4, 30, 9, now (), now ()),
+    (4, 31, 10, now (), now ()),
+    (4, 32, 11, now (), now ()),
+    (4, 33, 12, now (), now ());
