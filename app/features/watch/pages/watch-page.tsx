@@ -38,11 +38,13 @@ export default function WatchPage({ loaderData }: Route.ComponentProps) {
   const { track, playlist, playlistTracks } = loaderData;
 
   useEffect(() => {
-    if (playlistTracks) {
-      setCurrentTrack(track);
-      setPlaylist(playlist);
-      setPlaylistTracks(playlistTracks);
+    if (!track || !playlist || !playlistTracks) {
+      return;
     }
+
+    setCurrentTrack(track);
+    setPlaylist(playlist);
+    setPlaylistTracks(playlistTracks);
   }, []);
 
   useEffect(() => {
