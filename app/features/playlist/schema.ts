@@ -16,8 +16,12 @@ export const playlists = pgTable('playlists', {
 });
 
 export const playlist_tracks = pgTable('playlist_tracks', {
-  playlist_id: bigint({ mode: 'number' }).references(() => playlists.playlist_id),
-  track_id: bigint({ mode: 'number' }).references(() => tracks.track_id),
+  playlist_id: bigint({ mode: 'number' })
+    .notNull()
+    .references(() => playlists.playlist_id),
+  track_id: bigint({ mode: 'number' })
+    .notNull()
+    .references(() => tracks.track_id),
   order: integer().notNull(),
   created_at: timestamp().notNull().defaultNow(),
   updated_at: timestamp().notNull().defaultNow(),
