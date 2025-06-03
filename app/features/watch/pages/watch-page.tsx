@@ -1,8 +1,9 @@
 import FullPlayer from '~/common/components/full-player';
 import { usePlayerStore } from '~/common/store/player-store';
 import type { Route } from './+types/watch-page';
-import { getPlaylistByTrackId } from '~/api/playlist';
 import { useEffect } from 'react';
+import { getPlaylistByTrackId, getPlaylistTracksByPlaylistId } from '~/features/playlist/queries';
+import { getTrackById } from '~/features/track/queries';
 
 export const meta: Route.MetaFunction = ({ data }) => {
   return [{ title: `Playlist - ${data.playlist?.title ?? 'Not Found'}` }];
@@ -10,27 +11,37 @@ export const meta: Route.MetaFunction = ({ data }) => {
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   if (!params.trackId) {
-    return { playlist: null, track: null };
+    return { track: null, playlist: null, playlistTracks: null };
   }
-  const playlist = await getPlaylistByTrackId(params.trackId);
-  if (!playlist) {
-    return { playlist: null, track: null };
-  }
-  const track = playlist.playlistTracks.find(track => track.id === params.trackId);
+
+  const trackId = Number(params.trackId);
+  const track = await getTrackById(trackId);
   if (!track) {
-    return { playlist: null, track: null };
+    return { track: null, playlist: null, playlistTracks: null };
   }
-  return { playlist, track };
+
+  const playlist = await getPlaylistByTrackId(track.trackId);
+  if (!playlist) {
+    return { track: null, playlist: null, playlistTracks: null };
+  }
+
+  const playlistTracks = await getPlaylistTracksByPlaylistId(playlist.playlistId);
+  if (!playlistTracks) {
+    return { track: null, playlist: null, playlistTracks: null };
+  }
+
+  return { track, playlist, playlistTracks };
 };
 
 export default function WatchPage({ loaderData }: Route.ComponentProps) {
-  const { setCurrentTrack, setPlaylist, setIsFullPlayerOpen } = usePlayerStore();
-  const { playlist, track } = loaderData;
+  const { setCurrentTrack, setPlaylist, setPlaylistTracks, setIsFullPlayerOpen } = usePlayerStore();
+  const { track, playlist, playlistTracks } = loaderData;
 
   useEffect(() => {
-    if (track && playlist) {
+    if (playlistTracks) {
       setCurrentTrack(track);
       setPlaylist(playlist);
+      setPlaylistTracks(playlistTracks);
     }
   }, []);
 
