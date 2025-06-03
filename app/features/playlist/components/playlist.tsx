@@ -1,24 +1,24 @@
 import { useNavigate } from 'react-router';
 import { Card, CardContent } from '~/common/components/ui/card';
-import type { Playlist } from '~/common/types/playlist';
+import type { Playlist, PlaylistTrack } from '~/common/types/playlist';
 
 interface PlaylistProps {
-  playlist: Playlist;
+  playlistTracks: PlaylistTrack[];
 }
 
-export default function Playlist({ playlist }: PlaylistProps) {
+export default function Playlist({ playlistTracks }: PlaylistProps) {
   const navigate = useNavigate();
 
-  const handleClick = (trackId: string) => {
+  const handleClick = (trackId: number) => {
     navigate(`/watch/${trackId}`);
   };
 
   return (
     <div className="flex flex-col gap-2.5">
-      {playlist.playlistTracks.map(track => (
+      {playlistTracks.map(track => (
         <Card
-          key={track.id}
-          onClick={() => handleClick(track.id)}
+          key={track.trackId}
+          onClick={() => handleClick(track.trackId)}
           className="cursor-pointer hover:bg-gray-100 transition p-3"
         >
           <CardContent className="px-2">
