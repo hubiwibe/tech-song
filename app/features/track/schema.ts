@@ -20,6 +20,7 @@ export const tracks = pgTable('tracks', {
   track_id: bigint({ mode: 'number' }).primaryKey().generatedAlwaysAsIdentity(),
   title: text().notNull(),
   content: text().notNull(),
+  audio_url: text(),
   stats: jsonb().notNull().default({ views: 0, likes: 0 }),
   profile_id: uuid()
     .references(() => profiles.profile_id, { onDelete: 'cascade' })
