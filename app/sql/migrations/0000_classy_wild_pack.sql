@@ -8,8 +8,8 @@ CREATE TABLE "playback_histories" (
 );
 --> statement-breakpoint
 CREATE TABLE "playlist_tracks" (
-	"playlist_id" bigint,
-	"track_id" bigint,
+	"playlist_id" bigint NOT NULL,
+	"track_id" bigint NOT NULL,
 	"order" integer NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"updated_at" timestamp DEFAULT now() NOT NULL
@@ -69,6 +69,7 @@ CREATE TABLE "tracks" (
 	"track_id" bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "tracks_track_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START WITH 1 CACHE 1),
 	"title" text NOT NULL,
 	"content" text NOT NULL,
+	"audio_url" text NOT NULL,
 	"stats" jsonb DEFAULT '{"views":0,"likes":0}'::jsonb NOT NULL,
 	"profile_id" uuid NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,

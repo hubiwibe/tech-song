@@ -1,5 +1,5 @@
 {
-  "id": "e10a3ef9-b707-4625-8662-62cd244f4a8b",
+  "id": "cbe9f283-9726-445c-bb15-26f1bf29ba10",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -104,13 +104,13 @@
           "name": "playlist_id",
           "type": "bigint",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "track_id": {
           "name": "track_id",
           "type": "bigint",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "order": {
           "name": "order",
@@ -615,6 +615,12 @@
         },
         "content": {
           "name": "content",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "audio_url": {
+          "name": "audio_url",
           "type": "text",
           "primaryKey": false,
           "notNull": true
