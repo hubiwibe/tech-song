@@ -3,7 +3,7 @@ export interface Track {
   categoryId?: number | null;
   title: string;
   content: string;
-  audioUrl?: string | null;
+  audioUrl: string | null;
 }
 
 export interface TrackCategory {
