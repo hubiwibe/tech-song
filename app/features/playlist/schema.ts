@@ -16,6 +16,7 @@ export const playlists = pgTable('playlists', {
 });
 
 export const playlist_tracks = pgTable('playlist_tracks', {
+  playlist_track_id: bigint({ mode: 'number' }).primaryKey().generatedAlwaysAsIdentity(),
   playlist_id: bigint({ mode: 'number' })
     .notNull()
     .references(() => playlists.playlist_id),
@@ -28,6 +29,7 @@ export const playlist_tracks = pgTable('playlist_tracks', {
 });
 
 export const playlist_views = pgTable('playlist_views', {
+  playlist_view_id: bigint({ mode: 'number' }).primaryKey().generatedAlwaysAsIdentity(),
   playlist_id: bigint({ mode: 'number' }).references(() => playlists.playlist_id),
   profile_id: uuid().references(() => profiles.profile_id),
   created_at: timestamp().notNull().defaultNow(),
@@ -35,6 +37,7 @@ export const playlist_views = pgTable('playlist_views', {
 });
 
 export const playback_histories = pgTable('playback_histories', {
+  playback_history_id: bigint({ mode: 'number' }).primaryKey().generatedAlwaysAsIdentity(),
   playlist_id: bigint({ mode: 'number' }).references(() => playlists.playlist_id),
   profile_id: uuid().references(() => profiles.profile_id),
   track_id: bigint({ mode: 'number' }).references(() => tracks.track_id),

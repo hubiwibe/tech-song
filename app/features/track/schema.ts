@@ -29,24 +29,18 @@ export const tracks = pgTable('tracks', {
   updated_at: timestamp().notNull().defaultNow(),
 });
 
-export const track_categories = pgTable(
-  'track_categories',
-  {
-    track_id: bigint({ mode: 'number' }).references(() => tracks.track_id, { onDelete: 'cascade' }),
-    category_id: bigint({ mode: 'number' }).references(() => categories.category_id, { onDelete: 'cascade' }),
-    created_at: timestamp().notNull().defaultNow(),
-    updated_at: timestamp().notNull().defaultNow(),
-  },
-  table => [primaryKey({ columns: [table.track_id, table.category_id] })],
-);
+export const track_categories = pgTable('track_categories', {
+  track_category_id: bigint({ mode: 'number' }).primaryKey().generatedAlwaysAsIdentity(),
+  track_id: bigint({ mode: 'number' }).references(() => tracks.track_id, { onDelete: 'cascade' }),
+  category_id: bigint({ mode: 'number' }).references(() => categories.category_id, { onDelete: 'cascade' }),
+  created_at: timestamp().notNull().defaultNow(),
+  updated_at: timestamp().notNull().defaultNow(),
+});
 
-export const track_tags = pgTable(
-  'track_tags',
-  {
-    track_id: bigint({ mode: 'number' }).references(() => tracks.track_id, { onDelete: 'cascade' }),
-    tag_id: bigint({ mode: 'number' }).references(() => tags.tag_id, { onDelete: 'cascade' }),
-    created_at: timestamp().notNull().defaultNow(),
-    updated_at: timestamp().notNull().defaultNow(),
-  },
-  table => [primaryKey({ columns: [table.track_id, table.tag_id] })],
-);
+export const track_tags = pgTable('track_tags', {
+  track_tag_id: bigint({ mode: 'number' }).primaryKey().generatedAlwaysAsIdentity(),
+  track_id: bigint({ mode: 'number' }).references(() => tracks.track_id, { onDelete: 'cascade' }),
+  tag_id: bigint({ mode: 'number' }).references(() => tags.tag_id, { onDelete: 'cascade' }),
+  created_at: timestamp().notNull().defaultNow(),
+  updated_at: timestamp().notNull().defaultNow(),
+});
