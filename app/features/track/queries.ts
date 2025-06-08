@@ -9,6 +9,7 @@ export const getTrackById = async (trackId: number): Promise<Track | null> => {
       trackId: tracks.track_id,
       title: tracks.title,
       content: tracks.content,
+      audioUrl: tracks.audio_url,
     })
     .from(tracks)
     .where(eq(tracks.track_id, trackId))
