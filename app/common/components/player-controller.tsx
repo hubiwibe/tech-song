@@ -1,16 +1,13 @@
 import { Pause, Play, Repeat, Shuffle, StepBack, StepForward } from 'lucide-react';
+import { useNavigate } from 'react-router';
 import { Button } from '~/common/components/ui/button';
 import { usePlayerStore } from '~/common/store/player-store';
 
 export default function PlayerController() {
-  const { isPlaying, isPaused, playPrev, playNext, play, pause, resume, stop } = usePlayerStore();
+  const navigate = useNavigate();
+  const { isPlaying, play, pause, currentTrack, playlistTracks } = usePlayerStore();
 
   const handleTogglePlay = () => {
-    if (isPaused) {
-      resume();
-      return;
-    }
-
     if (isPlaying) {
       pause();
     } else {
@@ -19,13 +16,29 @@ export default function PlayerController() {
   };
 
   const handleStepBack = () => {
-    stop();
-    playPrev();
+    pause();
+
+    const currentIdx = playlistTracks.findIndex(t => t.trackId === currentTrack?.trackId);
+    if (currentIdx === -1) {
+      return;
+    }
+
+    const prevIdx = (currentIdx - 1 + playlistTracks.length) % playlistTracks.length;
+    const prevTrack = playlistTracks[prevIdx];
+    navigate(`/watch/${prevTrack.trackId}`);
   };
 
   const handleStepForward = () => {
-    stop();
-    playNext();
+    pause();
+
+    const currentIdx = playlistTracks.findIndex(t => t.trackId === currentTrack?.trackId);
+    if (currentIdx === -1) {
+      return;
+    }
+
+    const nextIdx = (currentIdx + 1) % playlistTracks.length;
+    const nextTrack = playlistTracks[nextIdx];
+    navigate(`/watch/${nextTrack.trackId}`);
   };
 
   const handleShuffle = () => {
