@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router';
 import PlayerController from '~/common/components/player-controller';
 import {
   Drawer,
@@ -8,25 +7,20 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from '~/common/components/ui/drawer';
-import { usePlayerStore } from '~/common/store/player-store';
+interface FullPlayerProps {
+  isOpen: boolean;
+  onOpenChange: (open: boolean) => void;
+  title: string;
+  description: string;
+}
 
-export default function FullPlayer() {
-  const navigate = useNavigate();
-  const { isFullPlayerOpen, currentTrack, setIsFullPlayerOpen } = usePlayerStore();
-
-  const handleClose = () => {
-    setIsFullPlayerOpen(false);
-    setTimeout(() => {
-      navigate(-1);
-    }, 150);
-  };
-
+export default function FullPlayer({ isOpen, onOpenChange, title, description }: FullPlayerProps) {
   return (
-    <Drawer open={isFullPlayerOpen} onOpenChange={handleClose}>
+    <Drawer open={isOpen} onOpenChange={onOpenChange}>
       <DrawerContent className="mx-auto h-full max-w-xl">
         <DrawerHeader>
-          <DrawerTitle>{currentTrack?.title}</DrawerTitle>
-          <DrawerDescription className="whitespace-pre-wrap">{currentTrack?.content}</DrawerDescription>
+          <DrawerTitle>{title}</DrawerTitle>
+          <DrawerDescription className="whitespace-pre-wrap">{description}</DrawerDescription>
         </DrawerHeader>
         <DrawerFooter className="bg-gray-100 dark:bg-gray-900">
           <PlayerController />
