@@ -30,6 +30,10 @@ export default function PlaylistPage({ loaderData }: Route.ComponentProps) {
     navigate(`/watch/${playlistTracks[0].trackId}`);
   };
 
+  if (playlistTracks.length === 0) {
+    return <div>Playlist not found</div>;
+  }
+
   return (
     <section className="px-3 py-6 h-full">
       <header className="mb-8 flex items-center gap-4">
