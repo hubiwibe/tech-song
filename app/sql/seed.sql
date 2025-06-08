@@ -1,6 +1,6 @@
 -- seed.sql
 -- Seed data for all tables except profiles
--- profile_id is fixed as '68805675-e29b-4255-8eee-28d1d56d079b'
+-- profile_id is fixed as 'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b'
 -- 1. playlists
 INSERT INTO
     playlists (
@@ -18,7 +18,7 @@ VALUES
         NULL,
         true,
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
@@ -27,7 +27,7 @@ VALUES
         NULL,
         true,
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
@@ -36,7 +36,7 @@ VALUES
         NULL,
         true,
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
@@ -45,7 +45,7 @@ VALUES
         NULL,
         true,
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
@@ -54,7 +54,7 @@ VALUES
         NULL,
         true,
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     );
@@ -74,9 +74,7 @@ VALUES
     -- Browser
     (
         '브라우저에 url을 입력하면 벌어지는 일들은 무엇인가?',
-        '### 브라우저에 URL을 입력하면 벌어지는 일들은 무엇인가?
-
-사용자가 브라우저 주소창에 URL을 입력하면, 브라우저는 여러 단계의 과정을 거쳐 웹 페이지를 보여줍니다.
+        '사용자가 브라우저 주소창에 URL을 입력하면, 브라우저는 여러 단계의 과정을 거쳐 웹 페이지를 보여줍니다.
 
 1. **URL 파싱 및 스킴 확인:**
    브라우저는 입력된 URL을 파싱해서 프로토콜(예: http, https), 도메인, 경로, 쿼리스트링 등을 분리합니다.
@@ -107,15 +105,13 @@ VALUES
 → 동적 광고/뉴스/실시간 데이터는 JS로 추가 fetch.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         '브라우저 렌더링 과정',
-        '### 브라우저 렌더링 과정
-
-브라우저가 HTML을 화면에 표시하기까지의 과정은 아래와 같습니다.
+        '브라우저가 HTML을 화면에 표시하기까지의 과정은 아래와 같습니다.
 
 1. **HTML 파싱 → DOM 트리 생성**
    HTML 문서를 파싱해서 DOM(Document Object Model) 트리를 만듭니다. 예를 들어 `<div><p>안녕</p></div>`는 트리 구조로 메모리에 저장.
@@ -141,15 +137,13 @@ VALUES
 - 크리티컬 렌더링 패스 최적화, lazy loading, 코드 분할 등으로 렌더링을 최적화할 수 있습니다.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'CORS란 무엇인가?',
-        '### CORS란 무엇인가?
-
-CORS(Cross-Origin Resource Sharing)는 **브라우저의 보안 정책** 중 하나로, \*\*다른 출처(origin)\*\*로의 리소스 요청을 제한하는 기능입니다.
+        'CORS(Cross-Origin Resource Sharing)는 **브라우저의 보안 정책** 중 하나로, \*\*다른 출처(origin)\*\*로의 리소스 요청을 제한하는 기능입니다.
 
 - 예를 들어, 내가 `www.abc.com`에서 페이지를 보고 있는데, 자바스크립트 코드로 `www.xyz.com` API를 호출하면, 브라우저가 이를 차단할 수 있습니다.
 
@@ -162,15 +156,13 @@ CORS(Cross-Origin Resource Sharing)는 **브라우저의 보안 정책** 중 하
 CORS는 서버 개발자와의 협업 포인트입니다. FE가 직접 해결할 수 없고, 서버에서 명시적으로 허용해줘야 합니다.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         '쿠키, 세션, 토큰은 각각 무엇인가?',
-        '### 쿠키, 세션, 토큰은 각각 무엇인가?
-
-- **쿠키(Cookie):**
+        '- **쿠키(Cookie):**
   브라우저가 key-value 형태로 저장하는 작은 데이터.
   도메인, path, expires, httpOnly, secure 등 속성 설정 가능.
   서버가 Set-Cookie로 내려주면, 같은 도메인 요청시 자동으로 전송됨.
@@ -192,15 +184,13 @@ CORS는 서버 개발자와의 협업 포인트입니다. FE가 직접 해결할
 SPA/모바일/마이크로서비스 환경에서는 주로 토큰을 씁니다.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'MVC와 MVVM패턴의 차이는 무엇인가?',
-        '### MVC와 MVVM 패턴의 차이
-
-- **MVC(Model-View-Controller):**
+        '- **MVC(Model-View-Controller):**
   Model(데이터), View(화면), Controller(로직)가 분리.
   View는 사용자에게 데이터 표시,
   Controller가 View와 Model 중재.
@@ -224,16 +214,14 @@ React, Vue 등은 MVVM 성격을 띕니다.
 MVC는 전통적인 백엔드 프레임워크(Spring, Django 등)에서 자주 사용.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     -- JavaScript
     (
         'JavaScript란 무엇인가?',
-        '### JavaScript란 무엇인가?
-
-JavaScript는 **웹 브라우저에서 동작하는 대표적인 스크립트 언어**로,
+        'JavaScript는 **웹 브라우저에서 동작하는 대표적인 스크립트 언어**로,
 HTML/CSS와 함께 웹의 3대 구성요소 중 하나입니다.
 
 - **동적이고 인터프리터 방식**(실행시 해석)
@@ -243,15 +231,13 @@ HTML/CSS와 함께 웹의 3대 구성요소 중 하나입니다.
 - SPA, 모바일앱, 데스크탑앱(예: Electron) 등 다양한 플랫폼에서 사용',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'closure란 무엇인가?',
-        '### closure란 무엇인가?
-
-Closure(클로저)는 **외부 함수의 지역 변수를 내부 함수가 참조**하는 현상을 말합니다.
+        'Closure(클로저)는 **외부 함수의 지역 변수를 내부 함수가 참조**하는 현상을 말합니다.
 
 ```js
 function outer() {
@@ -274,15 +260,13 @@ counter(); // 2
 - 콜백/비동기 처리 등에서 유용하게 활용됩니다.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'prototype란 무엇인가?',
-        '### prototype란 무엇인가?
-
-JavaScript의 모든 객체는 **프로토타입(Prototype)이라는 숨은 객체**를 갖고 있습니다.
+        'JavaScript의 모든 객체는 **프로토타입(Prototype)이라는 숨은 객체**를 갖고 있습니다.
 
 - 함수로 객체를 만들면, 해당 함수의 `prototype` 속성에 메서드를 정의할 수 있습니다.
 - 인스턴스가 메서드를 찾을 때, 자기 자신 → 프로토타입 순서로 탐색합니다. (프로토타입 체인)
@@ -302,15 +286,13 @@ p.sayHello(); // Hello Tom
 ES6 클래스(`class`)도 내부적으로 프로토타입을 이용합니다.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'event loop란 무엇인가?',
-        '### event loop란 무엇인가?
-
-JavaScript는 **싱글 스레드**이지만,
+        'JavaScript는 **싱글 스레드**이지만,
 비동기 작업(타이머, 네트워크 등)을 처리하기 위해
 이벤트 루프(Event Loop)라는 메커니즘을 사용합니다.
 
@@ -330,15 +312,13 @@ setTimeout은 콜백을 바로 실행하지 않고 Queue에 넣었다가,
 동기 코드가 모두 끝난 뒤에 실행합니다.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'event bubbling란 무엇인가?',
-        '### event bubbling이란 무엇인가?
-
-이벤트 버블링(Event Bubbling)은
+        '이벤트 버블링(Event Bubbling)은
 **이벤트가 가장 안쪽(자식) 요소에서 발생하여, 부모 요소로 전파되는 현상**입니다.
 
 - 예를 들어, `<div><button>Click</button></div>`에서 버튼을 클릭하면,
@@ -351,15 +331,13 @@ setTimeout은 콜백을 바로 실행하지 않고 Queue에 넣었다가,
 이벤트 위임, 혹은 중복 핸들러 방지에 응용됩니다.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'event capturing란 무엇인가?',
-        '### event capturing이란 무엇인가?
-
-이벤트 캡처링(Event Capturing)은
+        '이벤트 캡처링(Event Capturing)은
 **이벤트가 루트(최상위) 요소에서부터 자식 방향으로 전달되는 현상**입니다.
 
 - DOM 이벤트는 기본적으로 **캡처링 → 버블링** 두 단계로 전달됩니다.
@@ -370,15 +348,13 @@ element.addEventListener("click", handler, true);
 ```',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'event delegation란 무엇인가?',
-        '### event delegation이란 무엇인가?
-
-이벤트 위임(Event Delegation)은
+        '이벤트 위임(Event Delegation)은
 **부모 요소에 이벤트 리스너를 등록해서,
 자식 요소의 이벤트를 한 번에 관리**하는 기법입니다.
 
@@ -394,15 +370,13 @@ document.querySelector("ul").addEventListener("click", e => {
 ```',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'event propagation란 무엇인가?',
-        '### event propagation이란 무엇인가?
-
-이벤트 전파(Event Propagation)는
+        '이벤트 전파(Event Propagation)는
 **이벤트가 DOM 트리를 따라 이동하는 전체 과정**을 의미합니다.
 (캡처링 → 타깃 → 버블링)
 
@@ -411,16 +385,14 @@ document.querySelector("ul").addEventListener("click", e => {
 - 버블링: 발생 요소에서 다시 루트로',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     -- TypeScript
     (
         'TypeScript란 무엇인가?',
-        '### TypeScript란 무엇인가?
-
-TypeScript는 **JavaScript에 정적 타입(type system)을 추가**한 언어로,
+        'TypeScript는 **JavaScript에 정적 타입(type system)을 추가**한 언어로,
 컴파일 시 타입 오류를 사전에 체크할 수 있게 해줍니다.
 
 - JS로 컴파일되어 동작하므로, JS 생태계와 호환됨
@@ -428,15 +400,13 @@ TypeScript는 **JavaScript에 정적 타입(type system)을 추가**한 언어�
 - 대규모 프로젝트에서 유지보수, 협업에 유리',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'TypeScript의 타입 추론이란 무엇인가?',
-        '### TypeScript의 타입 추론이란 무엇인가?
-
-TypeScript는 개발자가 타입을 명시하지 않아도
+        'TypeScript는 개발자가 타입을 명시하지 않아도
 **코드 문맥을 분석해서 변수, 함수의 타입을 자동으로 유추**합니다.
 
 ```typescript
@@ -449,15 +419,13 @@ function sum(x = 10, y = 20) {
 타입 추론은 코드를 간결하게 하면서도 타입 안정성을 유지하게 해줍니다.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'TypeScript의 타입 정의란 무엇인가?',
-        '### TypeScript의 타입 정의란 무엇인가?
-
-변수, 함수, 객체 등에 대해
+        '변수, 함수, 객체 등에 대해
 **타입을 명시적으로 지정하는 것**을 의미합니다.
 
 ```typescript
@@ -471,15 +439,13 @@ function add(x: number, y: number): number {
 IDE의 자동완성/오류 검출 등 개발 생산성을 높여줍니다.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'TypeScript의 타입 별칭이란 무엇인가?',
-        '### TypeScript의 타입 별칭이란 무엇인가?
-
-타입 별칭(Type Alias)은
+        '타입 별칭(Type Alias)은
 `type` 키워드를 이용해 복잡한 타입에 **이름을 부여**하는 기능입니다.
 
 ```typescript
@@ -490,15 +456,13 @@ const tom: User = { name: "Tom", age: 30 };
 타입 별칭은 유니언, 인터섹션 타입 등에도 사용할 수 있습니다.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'TypeScript의 제너릭이란 무엇인가?',
-        '### TypeScript의 제너릭이란 무엇인가?
-
-제너릭(Generic)은
+        '제너릭(Generic)은
 **타입을 파라미터화해서** 다양한 타입에 대해 재사용 가능한 함수를 만들 수 있게 해줍니다.
 
 ```typescript
@@ -512,15 +476,13 @@ identity<string>("hi");
 Array, Promise 등도 모두 제너릭 타입입니다.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'TypeScript의 인터섹션이란 무엇인가?',
-        '### TypeScript의 인터섹션(Intersection)이란 무엇인가?
-
-인터섹션(Intersection)은
+        '인터섹션(Intersection)은
 `&` 연산자로 **여러 타입을 합성**해서
 모든 타입의 속성을 모두 포함한 새 타입을 만드는 기능입니다.
 
@@ -531,15 +493,13 @@ type C = A & B; // { name: string; age: number }
 ```',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'any와 unknown의 차이점은 무엇인가?',
-        '### any와 unknown의 차이점은 무엇인가?
-
-- **any:**
+        '- **any:**
   타입 체크가 완전히 무력화됨.
   어떤 타입이든 할당, 연산 가능(런타임 오류 위험).
 
@@ -556,16 +516,14 @@ y.foo(); // 에러 발생(컴파일 단계에서)
 ```',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     -- React
     (
         '리액트 리스트에 왜 key를 사용해야 하나요?',
-        '### 리액트 리스트에 왜 key를 사용해야 하나요?
-
-리스트 렌더링에서 **key는 각 아이템을 고유하게 식별**하는 값입니다.
+        '리스트 렌더링에서 **key는 각 아이템을 고유하게 식별**하는 값입니다.
 
 - key가 없으면, 아이템 추가/삭제 시 리액트가 DOM 변화를 최적화하지 못해
   의도치 않은 리렌더링, 상태 꼬임, 성능 저하가 발생할 수 있습니다.
@@ -574,15 +532,13 @@ y.foo(); // 에러 발생(컴파일 단계에서)
   실제 고유 ID(주로 DB id, uuid 등)를 쓰는 게 바람직합니다.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         '리액트에서 합성 이벤트란 무엇인가?',
-        '### 리액트에서 합성 이벤트란 무엇인가?
-
-합성 이벤트(Synthetic Event)는
+        '합성 이벤트(Synthetic Event)는
 리액트가 브라우저의 네이티브 이벤트를 추상화해서 제공하는 객체입니다.
 
 - 모든 브라우저에서 동일한 이벤트 인터페이스 제공
@@ -596,15 +552,13 @@ function MyButton() {
 ```',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'forwardRef란 무엇인가?',
-        '### forwardRef란 무엇인가?
-
-`forwardRef`는
+        '`forwardRef`는
 부모 컴포넌트가 자식 컴포넌트의 ref를 직접 참조할 수 있게
 ref를 전달(포워딩)하는 고차 컴포넌트(HOC)입니다.
 
@@ -615,15 +569,13 @@ const Input = React.forwardRef((props, ref) => <input ref={ref} {...props} />);
 ```',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'useImperativeHandle란 무엇인가?',
-        '### useImperativeHandle란 무엇인가?
-
-`useImperativeHandle`은
+        '`useImperativeHandle`은
 `forwardRef`와 함께 사용하며,
 
 부모가 자식 컴포넌트의 ref를 통해 **특정 메서드나 값만 노출**할 수 있게 제어합니다.
@@ -640,15 +592,13 @@ const MyInput = React.forwardRef((props, ref) => {
 ```',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'useRef란 무엇인가?',
-        '### useRef란 무엇인가?
-
-`useRef`는
+        '`useRef`는
 컴포넌트에서 **값을 저장하고, 해당 값이 변경되어도 리렌더링되지 않는 참조**를 만듭니다.
 
 - DOM 요소 접근
@@ -661,15 +611,13 @@ const inputRef = useRef(null);
 ```',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'useState란 무엇인가?',
-        '### useState란 무엇인가?
-
-`useState`는
+        '`useState`는
 함수형 컴포넌트에서 **상태(state) 관리를 가능하게 하는 훅**입니다.
 
 ```jsx
@@ -677,15 +625,13 @@ const [count, setCount] = useState(0);
 ```',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'useEffect란 무엇인가?',
-        '### useEffect란 무엇인가?
-
-`useEffect`는
+        '`useEffect`는
 컴포넌트의 **생명주기(마운트, 언마운트, 업데이트)별로 실행되는 부수 효과(side effect) 처리**를 위한 훅입니다.
 
 - 데이터 fetch, 이벤트 리스너 등록/해제, 타이머 등
@@ -701,15 +647,13 @@ useEffect(() => {
 ```',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'useContext란 무엇인가?',
-        '### useContext란 무엇인가?
-
-`useContext`는
+        '`useContext`는
 리액트의 Context API와 연동해서,
 **전역 데이터(테마, 인증, 언어 등)를 쉽게 공유**할 수 있게 해주는 훅입니다.
 
@@ -718,15 +662,13 @@ const value = useContext(MyContext);
 ```',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'useMemo란 무엇인가?',
-        '### useMemo란 무엇인가?
-
-`useMemo`는
+        '`useMemo`는
 \*\*값(계산 결과)을 메모이제이션(캐싱)\*\*해서
 의존성이 변하지 않으면 이전 값을 재사용합니다.
 
@@ -737,15 +679,13 @@ const expensiveValue = useMemo(() => computeExpensive(a, b), [a, b]);
 ```',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'useCallback란 무엇인가?',
-        '### useCallback란 무엇인가?
-
-`useCallback`은
+        '`useCallback`은
 **함수(콜백)를 메모이제이션**해서
 의존성이 변하지 않으면 같은 함수 인스턴스를 유지합니다.
 
@@ -756,15 +696,13 @@ const handleClick = useCallback(() => { ... }, [deps]);
 ```',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'useReducer란 무엇인가?',
-        '### useReducer란 무엇인가?
-
-`useReducer`는
+        '`useReducer`는
 복잡한 상태 관리(여러 상태, 상태 변경 로직이 복잡할 때)에
 Redux처럼 **reducer 패턴**으로 state를 관리할 수 있게 해줍니다.
 
@@ -773,30 +711,26 @@ const [state, dispatch] = useReducer(reducer, initialState);
 ```',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'useLayoutEffect란 무엇인가?',
-        '### useLayoutEffect란 무엇인가?
-
-`useLayoutEffect`는
+        '`useLayoutEffect`는
 DOM이 변경된 후 **화면이 그려지기 직전에 동기적으로 실행**되는 훅입니다.
 
 - 레이아웃 측정, 스크롤 위치 조정 등
 - useEffect는 비동기, useLayoutEffect는 동기(렌더-페인트 사이 실행)',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     ),
     (
         'React에서 컴포넌트가 리렌더링 되는 경우는 무엇인가?',
-        '### React에서 컴포넌트가 리렌더링 되는 경우는 무엇인가?
-
-- **컴포넌트의 state가 변경될 때**
+        '- **컴포넌트의 state가 변경될 때**
 - **props가 변경될 때**
 - **부모 컴포넌트가 리렌더링될 때**
 - **context value가 변경될 때**
@@ -806,7 +740,7 @@ DOM이 변경된 후 **화면이 그려지기 직전에 동기적으로 실행**
 실무에서는 **불필요한 리렌더링을 막기 위해 useMemo, React.memo, useCallback 등 최적화** 기법을 자주 사용합니다.',
         'https://413b273c-tech-song-cdn.hubiwibe.workers.dev/closure.mp3',
         '{"views":0,"likes":0}',
-        '68805675-e29b-4255-8eee-28d1d56d079b',
+        'eada7b8f-b1c3-416d-ae6f-d1e255ca1b4b',
         now (),
         now ()
     );
