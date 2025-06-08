@@ -1,4 +1,5 @@
 CREATE TABLE "playback_histories" (
+	"playback_history_id" bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "playback_histories_playback_history_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START WITH 1 CACHE 1),
 	"playlist_id" bigint,
 	"profile_id" uuid,
 	"track_id" bigint,
@@ -8,6 +9,7 @@ CREATE TABLE "playback_histories" (
 );
 --> statement-breakpoint
 CREATE TABLE "playlist_tracks" (
+	"playlist_track_id" bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "playlist_tracks_playlist_track_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START WITH 1 CACHE 1),
 	"playlist_id" bigint NOT NULL,
 	"track_id" bigint NOT NULL,
 	"order" integer NOT NULL,
@@ -16,6 +18,7 @@ CREATE TABLE "playlist_tracks" (
 );
 --> statement-breakpoint
 CREATE TABLE "playlist_views" (
+	"playlist_view_id" bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "playlist_views_playlist_view_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START WITH 1 CACHE 1),
 	"playlist_id" bigint,
 	"profile_id" uuid,
 	"created_at" timestamp DEFAULT now() NOT NULL,
@@ -50,19 +53,19 @@ CREATE TABLE "tags" (
 );
 --> statement-breakpoint
 CREATE TABLE "track_categories" (
+	"track_category_id" bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "track_categories_track_category_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START WITH 1 CACHE 1),
 	"track_id" bigint,
 	"category_id" bigint,
 	"created_at" timestamp DEFAULT now() NOT NULL,
-	"updated_at" timestamp DEFAULT now() NOT NULL,
-	CONSTRAINT "track_categories_track_id_category_id_pk" PRIMARY KEY("track_id","category_id")
+	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "track_tags" (
+	"track_tag_id" bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "track_tags_track_tag_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START WITH 1 CACHE 1),
 	"track_id" bigint,
 	"tag_id" bigint,
 	"created_at" timestamp DEFAULT now() NOT NULL,
-	"updated_at" timestamp DEFAULT now() NOT NULL,
-	CONSTRAINT "track_tags_track_id_tag_id_pk" PRIMARY KEY("track_id","tag_id")
+	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "tracks" (

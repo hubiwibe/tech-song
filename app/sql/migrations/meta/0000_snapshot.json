@@ -1,5 +1,5 @@
 {
-  "id": "cbe9f283-9726-445c-bb15-26f1bf29ba10",
+  "id": "bf75a0ba-df6c-452f-8db1-c5ab94dc28c7",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -8,6 +8,23 @@
       "name": "playback_histories",
       "schema": "",
       "columns": {
+        "playback_history_id": {
+          "name": "playback_history_id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "playback_histories_playback_history_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "cache": "1",
+            "cycle": false
+          }
+        },
         "playlist_id": {
           "name": "playlist_id",
           "type": "bigint",
@@ -100,6 +117,23 @@
       "name": "playlist_tracks",
       "schema": "",
       "columns": {
+        "playlist_track_id": {
+          "name": "playlist_track_id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "playlist_tracks_playlist_track_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "cache": "1",
+            "cycle": false
+          }
+        },
         "playlist_id": {
           "name": "playlist_id",
           "type": "bigint",
@@ -172,6 +206,23 @@
       "name": "playlist_views",
       "schema": "",
       "columns": {
+        "playlist_view_id": {
+          "name": "playlist_view_id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "playlist_views_playlist_view_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "cache": "1",
+            "cycle": false
+          }
+        },
         "playlist_id": {
           "name": "playlist_id",
           "type": "bigint",
@@ -442,6 +493,23 @@
       "name": "track_categories",
       "schema": "",
       "columns": {
+        "track_category_id": {
+          "name": "track_category_id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "track_categories_track_category_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "cache": "1",
+            "cycle": false
+          }
+        },
         "track_id": {
           "name": "track_id",
           "type": "bigint",
@@ -498,15 +566,7 @@
           "onUpdate": "no action"
         }
       },
-      "compositePrimaryKeys": {
-        "track_categories_track_id_category_id_pk": {
-          "name": "track_categories_track_id_category_id_pk",
-          "columns": [
-            "track_id",
-            "category_id"
-          ]
-        }
-      },
+      "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
@@ -516,6 +576,23 @@
       "name": "track_tags",
       "schema": "",
       "columns": {
+        "track_tag_id": {
+          "name": "track_tag_id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "track_tags_track_tag_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "cache": "1",
+            "cycle": false
+          }
+        },
         "track_id": {
           "name": "track_id",
           "type": "bigint",
@@ -572,15 +649,7 @@
           "onUpdate": "no action"
         }
       },
-      "compositePrimaryKeys": {
-        "track_tags_track_id_tag_id_pk": {
-          "name": "track_tags_track_id_tag_id_pk",
-          "columns": [
-            "track_id",
-            "tag_id"
-          ]
-        }
-      },
+      "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
