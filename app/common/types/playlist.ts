@@ -9,5 +9,5 @@ export interface PlaylistTrack {
   playlistId: number;
   title: string;
   content: string;
-  audioUrl?: string;
+  audioUrl: string | null;
 }
