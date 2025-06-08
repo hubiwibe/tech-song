@@ -1,47 +1,61 @@
 import { useEffect, useRef } from 'react';
 import { usePlayerStore } from '~/common/store/player-store';
+import { useNavigate } from 'react-router';
 
 export default function AudioPlayer() {
-  const { currentTrack, isPlaying, setIsPlaying, playNext } = usePlayerStore();
+  const navigate = useNavigate();
+  const { currentTrack, playlistTracks, isPlaying, play, pause } = usePlayerStore();
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    const onPlay = () => setIsPlaying(true);
-    const onPause = () => setIsPlaying(false);
+    const onLoadedMetadata = () => pause();
+    const onLoadedData = () => play();
+    const onPause = () => pause();
     const onEnded = () => {
-      setIsPlaying(false);
-      playNext();
+      pause();
+
+      if (!playlistTracks || !currentTrack) {
+        return;
+      }
+
+      const currentIdx = playlistTracks.findIndex(t => t.trackId === currentTrack?.trackId);
+      if (currentIdx === -1) {
+        return;
+      }
+      const nextIdx = (currentIdx + 1) % playlistTracks.length;
+      const nextTrack = playlistTracks[nextIdx];
+      navigate(`/watch/${nextTrack.trackId}`);
     };
-    const onError = () => {
-      setIsPlaying(false);
-    };
-    audio.addEventListener('play', onPlay);
+    const onError = () => pause();
+
+    audio.addEventListener('loadedmetadata', onLoadedMetadata);
+    audio.addEventListener('loadeddata', onLoadedData);
     audio.addEventListener('pause', onPause);
     audio.addEventListener('ended', onEnded);
     audio.addEventListener('error', onError);
 
     return () => {
-      audio.removeEventListener('play', onPlay);
+      audio.removeEventListener('loadedmetadata', onLoadedMetadata);
+      audio.removeEventListener('loadeddata', onLoadedData);
       audio.removeEventListener('pause', onPause);
       audio.removeEventListener('ended', onEnded);
       audio.removeEventListener('error', onError);
     };
-  }, [setIsPlaying]);
+  }, []);
 
   useEffect(() => {
     if (!audioRef.current || !currentTrack?.audioUrl) {
       return;
     }
 
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
     audioRef.current.src = currentTrack.audioUrl;
     audioRef.current.load();
-    if (!isPlaying) {
-      setIsPlaying(true);
-    }
-  }, [audioRef.current, currentTrack, setIsPlaying]);
+  }, [audioRef.current, currentTrack]);
 
   useEffect(() => {
     if (!audioRef.current) {
@@ -50,17 +64,13 @@ export default function AudioPlayer() {
 
     if (isPlaying) {
       audioRef.current.play().catch(error => {
-        if (error.name === 'NotAllowedError') {
-          console.warn('자동재생이 차단됐어요. 사용자 상호작용을 기다립니다.');
-        } else {
-          console.error('오디오 재생 중 에러:', error);
-        }
-        setIsPlaying(false);
+        pause();
+        alert('▶️ 버튼을 눌러 들으실 수 있어요');
       });
     } else {
       audioRef.current.pause();
     }
   }, [isPlaying]);
 
-  return <audio ref={audioRef} preload="metadata" />;
+  return <audio ref={audioRef} preload="metadata" autoPlay={false} />;
 }
