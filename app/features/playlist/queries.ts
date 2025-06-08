@@ -24,13 +24,14 @@ export const getPlaylistByTrackId = async (trackId: number): Promise<Playlist | 
     .then(result => result[0] ?? null);
 };
 
-export const getPlaylistTracksByPlaylistId = async (playlistId: number): Promise<PlaylistTrack[] | null> => {
+export const getPlaylistTracksByPlaylistId = async (playlistId: number): Promise<PlaylistTrack[]> => {
   return await db
     .select({
       trackId: playlist_tracks.track_id,
       playlistId: playlist_tracks.playlist_id,
       title: tracks.title,
       content: tracks.content,
+      audioUrl: tracks.audio_url,
     })
     .from(playlist_tracks)
     .innerJoin(tracks, eq(playlist_tracks.track_id, tracks.track_id))
