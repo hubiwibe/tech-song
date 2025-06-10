@@ -27,7 +27,7 @@ export default function AudioPlayer() {
       }
       const nextIdx = (currentIdx + 1) % playlistTracks.length;
       const nextTrack = playlistTracks[nextIdx];
-      navigate(`/watch/${nextTrack.trackId}`);
+      navigate(`/watch/${nextTrack.trackId}`, { replace: true });
     };
     const onError = () => pause();
 

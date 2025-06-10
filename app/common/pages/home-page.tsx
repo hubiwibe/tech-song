@@ -17,6 +17,10 @@ export default function HomePage({ loaderData }: Route.ComponentProps) {
   const navigate = useNavigate();
   const { playlists } = loaderData;
 
+  if (playlists.length === 0) {
+    return <div>No playlists</div>;
+  }
+
   const handleClick = (key: number) => {
     navigate(`/playlist/${key}`);
   };

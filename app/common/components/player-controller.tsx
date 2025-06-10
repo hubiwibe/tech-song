@@ -25,7 +25,7 @@ export default function PlayerController() {
 
     const prevIdx = (currentIdx - 1 + playlistTracks.length) % playlistTracks.length;
     const prevTrack = playlistTracks[prevIdx];
-    navigate(`/watch/${prevTrack.trackId}`);
+    navigate(`/watch/${prevTrack.trackId}`, { replace: true });
   };
 
   const handleStepForward = () => {
@@ -38,7 +38,7 @@ export default function PlayerController() {
 
     const nextIdx = (currentIdx + 1) % playlistTracks.length;
     const nextTrack = playlistTracks[nextIdx];
-    navigate(`/watch/${nextTrack.trackId}`);
+    navigate(`/watch/${nextTrack.trackId}`, { replace: true });
   };
 
   const handleShuffle = () => {
