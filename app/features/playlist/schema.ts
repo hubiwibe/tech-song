@@ -1,7 +1,7 @@
 import { bigint, boolean, integer, jsonb, pgPolicy, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
 import { tracks } from '~/features/track/schema';
-import { profiles } from '~/features/user/schema';
+import { profiles } from '~/features/users/schema';
 import { authenticatedRole, authUid } from 'drizzle-orm/supabase';
 
 export const playlists = pgTable(

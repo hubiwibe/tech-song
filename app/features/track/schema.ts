@@ -1,6 +1,6 @@
 import { sql } from 'drizzle-orm';
 import { bigint, jsonb, pgPolicy, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
-import { profiles } from '~/features/user/schema';
+import { profiles } from '~/features/users/schema';
 
 export const categories = pgTable(
   'categories',
