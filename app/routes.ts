@@ -5,4 +5,5 @@ export default [
   ...prefix('watch', [route('/:trackId', 'features/watch/pages/watch-page.tsx')]),
   ...prefix('playlist', [route('/:playlistId', 'features/playlist/pages/playlist-page.tsx')]),
   ...prefix('cron-job', [route('/', 'common/pages/cron-job-page.tsx')]),
+  route('/welcome', 'features/users/pages/welcome-page.tsx'),
 ] satisfies RouteConfig;
