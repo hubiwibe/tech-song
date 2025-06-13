@@ -18,15 +18,13 @@ export default function WelcomeUser() {
             >
               TechSong 로그인
             </Button>
+            <Text>
+              문의사항이나 건의사항은 아래 이메일로 부탁드립니다.
+              <br />
+              <Link href="mailto:info.techsong@gmail.com">info.techsong@gmail.com</Link>
+            </Text>
           </Container>
         </Body>
-        <footer>
-          <Text>
-            문의사항이나 건의사항은 아래 이메일로 부탁드립니다.
-            <br />
-            <Link href="mailto:info.techsong@gmail.com">info.techsong@gmail.com</Link>
-          </Text>
-        </footer>
       </Tailwind>
     </Html>
   );
