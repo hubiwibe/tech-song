@@ -3,7 +3,8 @@ import { BookHeadphones } from 'lucide-react';
 import { Card, CardContent } from '~/common/components/ui/card';
 import { useNavigate } from 'react-router';
 import { getPlaylists } from '~/features/playlist/queries';
-
+import { ShineBorder } from '~/common/components/magicui/shine-border';
+import { getRandomColors } from '~/lib/utils';
 export function meta({}: Route.MetaArgs) {
   return [{ title: 'Tech song' }, { name: 'description', content: 'Tech song' }];
 }
@@ -27,7 +28,7 @@ export default function HomePage({ loaderData }: Route.ComponentProps) {
 
   return (
     <section className="flex flex-col gap-4 px-4">
-      <div className="bg-white py-3 px-4 flex justify-center items-center gap-2">
+      <div className="bg-white pt-4 pb-3 px-4 flex justify-center items-center gap-2">
         <BookHeadphones size={28} className="text-gray-500" />
         <h1 className="font-extrabold text-3xl tracking-tight select-none cursor-default font-sans">
           <span className="text-gray-400">tech</span>
@@ -39,9 +40,10 @@ export default function HomePage({ loaderData }: Route.ComponentProps) {
           {playlists.map(playlist => (
             <Card
               key={playlist.id}
-              className="cursor-pointer hover:bg-gray-50"
+              className="cursor-pointer hover:bg-gray-50 relative overflow-hidden"
               onClick={() => handleClick(playlist.id)}
             >
+              <ShineBorder shineColor={getRandomColors(1)} />
               <CardContent className="flex items-center gap-2 text-lg font-semibold text-gray-500">
                 <span>{playlist.title}</span>
               </CardContent>
