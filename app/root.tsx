@@ -5,6 +5,7 @@ import './app.css';
 import MiniPlayer from '~/common/components/mini-player';
 import AudioPlayer from '~/common/components/audio-player';
 import { usePlayerStore } from '~/common/store/player-store';
+import { Toaster } from 'sonner';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -49,6 +50,7 @@ export default function App() {
           <AudioPlayer />
         </>
       ) : null}
+      <Toaster />
     </>
   );
 }

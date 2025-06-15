@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { usePlayerStore } from '~/common/store/player-store';
 import { useNavigate } from 'react-router';
+import { toast } from 'sonner';
 
 export default function AudioPlayer() {
   const navigate = useNavigate();
@@ -65,7 +66,19 @@ export default function AudioPlayer() {
     if (isPlaying) {
       audioRef.current.play().catch(error => {
         pause();
-        alert('▶️ 버튼을 눌러 들으실 수 있어요');
+        toast('재생 안내', {
+          description: '▶️ 버튼을 눌러 들으실 수 있어요',
+          position: 'bottom-center',
+          action: {
+            label: '확인',
+            onClick: () => {
+              toast.dismiss();
+            },
+          },
+          style: {
+            bottom: '80px',
+          },
+        });
       });
     } else {
       audioRef.current.pause();
