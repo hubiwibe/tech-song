@@ -7,6 +7,7 @@ import { getPlaylistById, getPlaylistTracksByPlaylistId } from '~/features/playl
 import { MagicCard } from '~/common/components/magicui/magic-card';
 import { Card } from '~/common/components/ui/card';
 import { RainbowButton } from '~/common/components/magicui/rainbow-button';
+import { AuroraText } from '~/common/components/magicui/aurora-text';
 
 export const meta: Route.MetaFunction = ({ data }) => {
   return [{ title: `Playlist - ${data.playlistTracks?.[0]?.title ?? 'Not Found'}` }];
@@ -38,7 +39,7 @@ export default function PlaylistPage({ loaderData }: Route.ComponentProps) {
     <section className="px-3 py-6 h-full">
       <header className="mb-8 flex items-center gap-4">
         <ChevronLeft className="w-10 h-10 cursor-pointer" onClick={() => navigate(-1)} />
-        <h1 className="text-4xl font-bold">{playlist.title}</h1>
+        <AuroraText className="text-4xl font-bold">{playlist.title}</AuroraText>
       </header>
       <Card className="p-0 shadow-none border-none">
         <MagicCard className="p-0" gradientColor="#D9D9D955">
