@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/github.css';
+import { AuroraText } from 'components/magicui/aurora-text';
 
 interface FullPlayerProps {
   isOpen: boolean;
@@ -17,7 +18,9 @@ export default function FullPlayer({ isOpen, onOpenChange, title, description }:
     <Drawer open={isOpen} onOpenChange={onOpenChange}>
       <DrawerContent className="mx-auto h-full max-w-xl">
         <DrawerHeader>
-          <DrawerTitle>{title}</DrawerTitle>
+          <DrawerTitle className="text-2xl font-bold">
+            <AuroraText>{title}</AuroraText>
+          </DrawerTitle>
           <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
             {description}
           </ReactMarkdown>
