@@ -1,3 +1,4 @@
+import { BorderBeam } from '~/common/components/magicui/border-beam';
 import { Pause, Play, Repeat, Shuffle, StepBack, StepForward } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { Button } from '~/common/components/ui/button';
@@ -58,8 +59,21 @@ export default function PlayerController() {
         <Button className="cursor-pointer" variant="ghost" size="lg" onClick={handleStepBack}>
           <StepBack className="size-5" />
         </Button>
-        <Button className="cursor-pointer" size="lg" onClick={handleTogglePlay}>
-          {isPlaying ? <Pause className="size-7" /> : <Play className="size-7" />}
+        <Button
+          variant="ghost"
+          className="cursor-pointer relative overflow-hidden"
+          size="lg"
+          onClick={handleTogglePlay}
+        >
+          {isPlaying ? (
+            <>
+              <Pause className="size-7" />
+              <BorderBeam duration={6} className="from-transparent via-red-500 to-transparent" />
+              <BorderBeam duration={6} delay={3} className="from-transparent via-blue-500 to-transparent" />
+            </>
+          ) : (
+            <Play className="size-7" />
+          )}
         </Button>
         <Button className="cursor-pointer" variant="ghost" size="lg" onClick={handleStepForward}>
           <StepForward className="size-5" />
