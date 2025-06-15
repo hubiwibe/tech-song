@@ -7,9 +7,9 @@ const client = new Resend(import.meta.env.VITE_RESEND_API_KEY);
 
 export const loader = async () => {
   const { data, error } = await client.emails.send({
-    from: 'Tech Song <info@mail.techsong.xyz>',
+    from: 'TechSong <info@mail.techsong.xyz>',
     to: 'hubiwibe@gmail.com',
-    subject: 'hello world',
+    subject: '환영합니다🎉 이제 눈은 편안하게, 귀로 공부해요 🎧',
     react: <WelcomeUser />,
   });
 
