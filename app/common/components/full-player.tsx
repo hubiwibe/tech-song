@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/github.css';
-import { AuroraText } from 'components/magicui/aurora-text';
+import { AuroraText } from '~/common/components/magicui/aurora-text';
 
 interface FullPlayerProps {
   isOpen: boolean;
