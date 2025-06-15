@@ -4,7 +4,7 @@ import { Card, CardContent } from '~/common/components/ui/card';
 import { useNavigate } from 'react-router';
 import { getPlaylists } from '~/features/playlist/queries';
 import { ShineBorder } from '~/common/components/magicui/shine-border';
-import { getRandomColors } from '~/lib/utils';
+import { tailwind500Colors } from '~/lib/utils';
 export function meta({}: Route.MetaArgs) {
   return [{ title: 'Tech song' }, { name: 'description', content: 'Tech song' }];
 }
@@ -37,13 +37,13 @@ export default function HomePage({ loaderData }: Route.ComponentProps) {
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          {playlists.map(playlist => (
+          {playlists.map((playlist, idx) => (
             <Card
               key={playlist.id}
               className="cursor-pointer hover:bg-gray-50 relative overflow-hidden"
               onClick={() => handleClick(playlist.id)}
             >
-              <ShineBorder shineColor={getRandomColors(1)} />
+              <ShineBorder shineColor={tailwind500Colors[idx % tailwind500Colors.length]} />
               <CardContent className="flex items-center gap-2 text-lg font-semibold text-gray-500">
                 <span>{playlist.title}</span>
               </CardContent>
