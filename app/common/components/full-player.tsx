@@ -1,5 +1,12 @@
 import PlayerController from '~/common/components/player-controller';
-import { Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle } from '~/common/components/ui/drawer';
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+} from '~/common/components/ui/drawer';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
@@ -22,9 +29,10 @@ export default function FullPlayer({ isOpen, onOpenChange, title, description }:
           <DrawerTitle className="text-2xl font-bold">
             <AuroraText>{title}</AuroraText>
           </DrawerTitle>
+          <DrawerDescription />
         </DrawerHeader>
         <section className="px-2">
-          <ScrollArea className="flex flex-col gap-4 h-[70vh] rounded-md p-2 border">
+          <ScrollArea className="flex flex-col gap-4 max-h-[70vh] rounded-md p-2 border">
             <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
               {description}
             </ReactMarkdown>
