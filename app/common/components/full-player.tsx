@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/github.css';
 import { AuroraText } from '~/common/components/magicui/aurora-text';
+import { ScrollArea } from '~/common/components/ui/scroll-area';
 
 interface FullPlayerProps {
   isOpen: boolean;
@@ -21,10 +22,14 @@ export default function FullPlayer({ isOpen, onOpenChange, title, description }:
           <DrawerTitle className="text-2xl font-bold">
             <AuroraText>{title}</AuroraText>
           </DrawerTitle>
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
-            {description}
-          </ReactMarkdown>
         </DrawerHeader>
+        <section className="px-2">
+          <ScrollArea className="flex flex-col gap-4 h-[70vh] rounded-md p-2 border">
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+              {description}
+            </ReactMarkdown>
+          </ScrollArea>
+        </section>
         <DrawerFooter className="bg-gray-100 dark:bg-gray-900">
           <PlayerController />
         </DrawerFooter>
