@@ -32,7 +32,7 @@ export default function FullPlayer({ isOpen, onOpenChange, title, description }:
           <DrawerDescription />
         </DrawerHeader>
         <section className="px-2">
-          <ScrollArea className="flex flex-col gap-4 max-h-[70vh] rounded-md p-2 border">
+          <ScrollArea className="flex flex-col gap-4 max-h-[70dvh] rounded-md p-2 border">
             <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
               {description}
             </ReactMarkdown>
