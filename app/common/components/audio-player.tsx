@@ -45,7 +45,7 @@ export default function AudioPlayer() {
       audio.removeEventListener('ended', onEnded);
       audio.removeEventListener('error', onError);
     };
-  }, []);
+  }, [currentTrack]);
 
   useEffect(() => {
     if (!audioRef.current || !currentTrack?.audioUrl) {
