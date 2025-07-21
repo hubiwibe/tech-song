@@ -35,3 +35,5 @@ tasks/
 .taskmasterconfig
 .windsurfrules
 .vercel
+
+.github/
