@@ -8,6 +8,7 @@ import { usePlayerStore } from '~/common/store/player-store';
 import { Toaster } from 'sonner';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import NavigationProgressBar from './common/components/NavigationProgressBar';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -34,7 +35,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="m-auto w-full max-w-xl min-h-screen">
-        {isNavigating && <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-pulse" />}
+        {isNavigating && <NavigationProgressBar />}
         {children}
         <ScrollRestoration />
         <Scripts />
