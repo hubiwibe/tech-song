@@ -1,4 +1,4 @@
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
+import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useNavigation } from 'react-router';
 
 import type { Route } from './+types/root';
 import './app.css';
@@ -8,6 +8,7 @@ import { usePlayerStore } from '~/common/store/player-store';
 import { Toaster } from 'sonner';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import NavigationProgressBar from './common/components/NavigationProgressBar';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -23,6 +24,8 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const navigation = useNavigation();
+  const isNavigating = Boolean(navigation.location);
   return (
     <html lang="en">
       <head>
@@ -32,6 +35,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="m-auto w-full max-w-xl min-h-screen">
+        {isNavigating && <NavigationProgressBar />}
         {children}
         <ScrollRestoration />
         <Scripts />
