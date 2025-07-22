@@ -27,7 +27,10 @@ export default function HomePage({ loaderData }: Route.ComponentProps) {
   };
 
   const handleContactClick = () => {
-    window.location.href = 'mailto:info.techsong@gmail.com';
+    const email = 'info.techsong@gmail.com';
+    const subject = encodeURIComponent('Tech Song 문의');
+    const mailtoUrl = `mailto:${email}?subject=${subject}`;
+    window.open(mailtoUrl, '_self');
   };
 
   return (
