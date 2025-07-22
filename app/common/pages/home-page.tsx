@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import { getPlaylists } from '~/features/playlist/queries';
 import { ShineBorder } from '~/common/components/magicui/shine-border';
 import { tailwind500Colors } from '~/lib/utils';
+import ContactButton from '../components/contact-button';
 export function meta({}: Route.MetaArgs) {
   return [{ title: 'Tech song' }, { name: 'description', content: 'Tech song' }];
 }
@@ -43,15 +44,7 @@ export default function HomePage({ loaderData }: Route.ComponentProps) {
             <span className="text-gray-500">song</span>
           </h1>
         </div>
-        
-        {/* Contact Button - Top Right */}
-        <button
-          onClick={handleContactClick}
-          className="absolute right-4 flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
-        >
-          <Mail size={16} />
-          <span>문의</span>
-        </button>
+        <ContactButton  onClick={handleContactClick} />
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
