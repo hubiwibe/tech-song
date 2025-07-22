@@ -56,7 +56,7 @@ export default function AudioPlayer() {
     audioRef.current.currentTime = 0;
     audioRef.current.src = currentTrack.audioUrl;
     audioRef.current.load();
-  }, [audioRef.current, currentTrack]);
+  }, [currentTrack]);
 
   useEffect(() => {
     if (!audioRef.current) {
