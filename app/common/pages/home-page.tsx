@@ -1,11 +1,12 @@
 import type { Route } from './+types/home-page';
-import { BookHeadphones, Mail } from 'lucide-react';
+import { BookHeadphones } from 'lucide-react';
 import { Card, CardContent } from '~/common/components/ui/card';
 import { useNavigate } from 'react-router';
 import { getPlaylists } from '~/features/playlist/queries';
 import { ShineBorder } from '~/common/components/magicui/shine-border';
 import { tailwind500Colors } from '~/lib/utils';
 import ContactButton from '../components/contact-button';
+
 export function meta({}: Route.MetaArgs) {
   return [{ title: 'Tech song' }, { name: 'description', content: 'Tech song' }];
 }
