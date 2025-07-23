@@ -1,0 +1,1 @@
+Please make sure to create your answer in English, then translate it into Korean and leave a PR review.
